@@ -3,11 +3,19 @@
   padding: 110px 70px 101px 70px;
 }
 
+@media screen and (max-width: 769px) {
+  .about-me {
+    padding: 89px 50px 89px 50px;
+  }
+}
+
 .about-me__title {
   font-size: 22px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.88px;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
 .about-me__line {
@@ -16,7 +24,7 @@
 
 .about-me__container {
   display: flex;
-  margin-top: 66px;
+  margin-top: 61px;
   justify-content: space-between;
 }
 
@@ -28,6 +36,15 @@
   margin: 0 0 18px 0;
 }
 
+@media screen and (max-width: 769px) {
+  .about-me__name {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 40px; /* 100% */
+    letter-spacing: -1.6px;
+  }
+}
+
 .about-me__brief-information {
   font-feature-settings: "clig" off, "liga" off;
   font-size: 18px;
@@ -35,19 +52,44 @@
   line-height: 20px; /* 111.111% */
 }
 
+@media screen and (max-width: 769px) {
+  .about-me__brief-information {
+    font-feature-settings: "clig" off, "liga" off;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px; /* 150% */
+  }
+}
+
 .about-me__information {
   font-feature-settings: "clig" off, "liga" off;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px; /* 157.143% */
+  margin-top: 26px;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me__information {
+    margin-top: 16px;
+    max-width: 364 px;
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+  }
 }
 
 .about-me__photo {
-    width: 270px;
-    height: 327px;
-    object-fit: cover;
-    object-position: 0 30px;
-    border-radius: 10px;
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 769px) {
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
 }
 
 .about-me__container-information {
@@ -58,11 +100,11 @@
 }
 
 .about-me__link {
-  color: #FFF;
-font-size: 14px;
-font-weight: 500;
-line-height: normal;
-text-decoration: none;
-position: absolute;
-bottom: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  position: absolute;
+  bottom: 0;
 }

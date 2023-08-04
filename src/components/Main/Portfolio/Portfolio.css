@@ -1,6 +1,12 @@
 .portfolio {
-    padding: 0 70px 125px 70px;
+    padding: 0 70px 87px 70px;
 }
+
+@media screen and (max-width: 769px) {
+    .portfolio {
+        padding: 0 50px 53px 50px;
+    }
+  }
 
 .portfolio__title {
     color: #8B8B8B;

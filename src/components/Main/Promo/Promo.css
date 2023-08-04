@@ -3,9 +3,17 @@
   display: flex;
   justify-content: space-between;
   padding-top: 75px;
-  padding-bottom: 25px;
+  padding-bottom: 0px;
   padding-left: 70px;
   padding-right: 70px;
+}
+
+@media screen and (max-width: 769px) {
+  .promo {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 75px 50px 0 50px;
+  }
 }
 
 .promo__title {
@@ -13,7 +21,19 @@
   font-weight: 400;
   line-height: 58px;
   max-width: 640px;
+  margin-top: 0;
   margin-bottom: 36px;
+}
+
+@media screen and (max-width: 769px) {
+  .promo__title {
+    text-align: center;
+    font-feature-settings: "clig" off, "liga" off;
+    font-size: 40px;
+    line-height: 50px;
+    margin-top: 48px;
+    margin-bottom: 22px;
+  }
 }
 
 .promo__text {
@@ -22,11 +42,27 @@
   line-height: normal;
   opacity: 0.5;
   margin-bottom: 146px;
+  max-width: 310px;
+}
+
+@media screen and (max-width: 769px) {
+  .promo__text {
+    max-width: 260px;
+    text-align: center;
+    margin: 0 auto 88px;
+  }
 }
 
 .promo__logo {
   max-width: 310px;
   max-height: 304px;
+}
+
+@media screen and (max-width: 769px) {
+  .promo__logo {
+    text-align: center;
+    margin-top: 65px;
+  }
 }
 
 .promo__button {
@@ -36,8 +72,16 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 3px;
-border: 1px solid #FFF;
-opacity: 0.6000000238418579;
+  border: 1px solid #fff;
+  opacity: 0.6000000238418579;
+  margin-bottom: 75px;
+}
+
+@media screen and (max-width: 769px) {
+  .promo__button {
+    margin: 0 auto 76px;
+    display: block;
+  }
 }

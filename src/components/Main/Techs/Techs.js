@@ -9,15 +9,15 @@ function Techs() {
             <img className="techs__line" src={line} alt="Линия подчеркивания"/>
             <h3 className="techs__subtitle">7 технологий</h3>
             <p className="techs__paragraph">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
-            <div className="techs__container">
-                <div className="techs__technologies">HTML</div>
-                <div className="techs__technologies">CSS</div>
-                <div className="techs__technologies">JS</div>
-                <div className="techs__technologies">React</div>
-                <div className="techs__technologies">Git</div>
-                <div className="techs__technologies">Express.js</div>
-                <div className="techs__technologies">mongoDB</div>
-            </div>
+            <ul className="techs__container">
+                <li className="techs__technologies">HTML</li>
+                <li className="techs__technologies">CSS</li>
+                <li className="techs__technologies">JS</li>
+                <li className="techs__technologies">React</li>
+                <li className="techs__technologies">Git</li>
+                <li className="techs__technologies">Express.js</li>
+                <li className="techs__technologies">mongoDB</li>
+            </ul>
         </section>
     );
 }

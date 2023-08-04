@@ -1,7 +1,7 @@
 import React from "react";
 
 import line from "../../../images/text__COLOR_stroke-landing.svg";
-import foto from "../../../images/photo_2023-08-04_14-13-26.jpg";
+import foto from "../../../images/foto.jpg";
 
 function AboutMe() {
     return(
