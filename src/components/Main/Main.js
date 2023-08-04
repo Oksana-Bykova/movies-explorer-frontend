@@ -1,31 +1,27 @@
+import React from "react";
+
 import AboutMe from "./AboutMe/AboutMe";
-import AboutProject from "./AboutProject";
-import NavTab from "./NavTab";
-import Portfolio from "./Portfolio";
-import Promo from "./Promo";
-import Techs from "./Techs";
+import AboutProject from "./AboutProject/AboutProject";
+import NavTab from "./NavTab/NavTab";
+import Portfolio from "./Portfolio/Portfolio";
+import Techs from "./Techs/Techs";
+import Promo from "./Promo/Promo";
+import Footer from "../Footer/Footer"
+
 
 
 function Main() {
     return (
         <>
             <Promo></Promo>
-            <NavTab></NavTab>
             <AboutProject></AboutProject>
             <Techs></Techs>
             <AboutMe></AboutMe>
             <Portfolio></Portfolio>
+            <Footer></Footer> 
         </>
-    )
-}
+    );
+};
 
 
 export { Main };
-
-
-/*Promo — компонент с вёрсткой баннера страницы «О проекте».
-NavTab — компонент с навигацией по странице «О проекте».
-AboutProject — компонент с описанием дипломного проекта.
-Techs — компонент с использованными технологиями.
-AboutMe — компонент с информацией о студенте.
-Portfolio — компонент со ссылками на другие проекты.*/

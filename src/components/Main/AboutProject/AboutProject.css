@@ -1,0 +1,79 @@
+.about-project {
+  padding: 110px 70px 110px 70px;
+}
+
+.about-project__title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0 0 23px 0;
+}
+
+.about-project__image {
+  width: 100%;
+}
+
+.about-project__container {
+  display: flex;
+  margin-top: 70px;
+}
+
+.about-project__subtitle {
+  margin: 0;
+}
+
+.about-project__paragraph {
+  margin: 26px 0 110px;
+}
+
+.about-project__diagram {
+  display: flex;
+  min-height: 36px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  width: 100%;
+}
+
+.about-project__backend {
+  
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.about-project__frontend {
+  
+  display: flex;
+  flex-direction: column;
+  flex-grow: 4;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-project__time-information-backend {
+    width: 100%;
+    min-height: 36px;
+    background: #3DDC84;
+    text-align: center;
+    line-height: 36px;
+}
+
+.about-project__time-information-frontend {
+    width: 100%;
+    min-height: 36px;
+    background: #303030;
+    text-align: center;
+    line-height: 36px;
+}
+
+.about-project__span {
+    margin-top: 14px;
+    color: #8B8B8B;
+}

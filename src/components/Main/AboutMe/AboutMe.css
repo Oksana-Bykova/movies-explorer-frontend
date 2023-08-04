@@ -1,0 +1,68 @@
+.about-me {
+  background: #202020;
+  padding: 110px 70px 101px 70px;
+}
+
+.about-me__title {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+}
+
+.about-me__line {
+  width: 100%;
+}
+
+.about-me__container {
+  display: flex;
+  margin-top: 66px;
+  justify-content: space-between;
+}
+
+.about-me__name {
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+  margin: 0 0 18px 0;
+}
+
+.about-me__brief-information {
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px; /* 111.111% */
+}
+
+.about-me__information {
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+
+.about-me__photo {
+    width: 270px;
+    height: 327px;
+    object-fit: cover;
+    object-position: 0 30px;
+    border-radius: 10px;
+}
+
+.about-me__container-information {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  position: relative;
+}
+
+.about-me__link {
+  color: #FFF;
+font-size: 14px;
+font-weight: 500;
+line-height: normal;
+text-decoration: none;
+position: absolute;
+bottom: 0;
+}

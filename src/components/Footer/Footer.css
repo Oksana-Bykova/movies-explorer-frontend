@@ -1,0 +1,37 @@
+.footer {
+  padding: 79px 70px 0 70px;
+}
+
+.footer__information {
+  color: #8b8b8b;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #424242;
+}
+
+.footer__link {
+  list-style: none;
+  text-align: right;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 20px;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.footer__list {
+    display: flex;
+    justify-content: flex-end;
+    
+}
