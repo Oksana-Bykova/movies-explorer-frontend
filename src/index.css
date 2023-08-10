@@ -26,3 +26,5 @@
 
 @import url(./components/NotFound/NotFound.css);
 
+@import url(./components/Movies/MoviesCard/MoviesCard.css);
+@import url(./components/Movies/MoviesCardList/MoviesCardList.css);

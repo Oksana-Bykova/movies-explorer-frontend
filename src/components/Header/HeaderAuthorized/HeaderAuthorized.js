@@ -12,6 +12,7 @@ function HeaderAuthorized(props) {
       const menu = document.querySelector(".header-authorized__menu");
       menuBtn.addEventListener("click", function () {
         menu.classList.toggle("active");
+        menuBtn.classList.toggle("active");
       });
     }
 
