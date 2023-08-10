@@ -6,6 +6,8 @@ import { Movies } from '../Movies/Movies.js';
 import { Register } from '../Register/Register.js';
 import { Login } from "../Login/Login.js";
 import { NotFound } from "../NotFound/NotFound.js";
+import { SavedMovies } from "../SavedMovies/SavedMovies.js";
+import { Profile } from "../Profile/Profile.js";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/signup" element={<Register />} />
         <Route path="/signin" element={<Login />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       </div>
     </div>
@@ -24,10 +28,5 @@ function App() {
 }
 
 export default App;
-
-/*
-        <Route path="/saved-movies" element={<SavedMovies />} />
-        <Route path="/profile" element={<Profile />} />
-        */
 
         

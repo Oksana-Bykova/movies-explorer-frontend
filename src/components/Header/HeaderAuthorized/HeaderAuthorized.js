@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import icon from "../../../images/iconicon.svg";
 
 function HeaderAuthorized(props) {
-  const windowOuterWidth = window.outerWidth;
-  console.log(windowOuterWidth);
+
+  const [windowOuterWidth, setWindowOuterWidth] = React.useState();
+    //setWindowOuterWidth(window.outerWidth);
+    const isBrowser = window && window.addEventListener('resize',() => {
+      setWindowOuterWidth(document.body.clientWidth);  
+  });
+    
 
   if (windowOuterWidth < 769) {
     function clickBurger() {
