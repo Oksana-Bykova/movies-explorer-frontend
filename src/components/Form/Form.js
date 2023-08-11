@@ -9,13 +9,13 @@ function Form(props) {
         <h1 className="form__title">{props.title}</h1>
         <form className="form__form" onSubmit={props.handleSubmit}>
 
-        <label className={props.label}>
+        <label className={props.label} htmlFor="name">
             Имя
             <input
               type="text"
               className="form__input"
-              name="email"
-              id="email"
+              name="name"
+              id="name"
               minLength={2}
               maxLength={30}
               required=""
@@ -24,7 +24,7 @@ function Form(props) {
             />
           </label>
 
-          <label className="form__label">
+          <label className="form__label" htmlFor="email">
             Email
             <input
               type="text"
@@ -39,7 +39,7 @@ function Form(props) {
             />
           </label>
 
-          <label className="form__label">
+          <label className="form__label" htmlFor="password">
           Пароль
             <input
               type="text"
