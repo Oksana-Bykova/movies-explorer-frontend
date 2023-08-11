@@ -98,10 +98,7 @@
   background: transparent;
   width: 129px;
   height: 36px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  color: #ffffff;
+
   border-radius: 3px;
   border: 1px solid #fff;
   opacity: 0.6000000238418579;
@@ -119,4 +116,12 @@
   .promo__button {
     margin: 0 auto 27px;
   }
+}
+
+.promo__link {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #ffffff;
 }

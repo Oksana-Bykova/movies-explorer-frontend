@@ -17,11 +17,11 @@
 }
 
 @media screen and (max-width: 320px) {
-    .header__login-in {
-      padding-left: 14px;
-      padding-right: 14px;
-    }
+  .header__login-in {
+    padding-left: 14px;
+    padding-right: 14px;
   }
+}
 
 .header__logo {
   width: 38px;

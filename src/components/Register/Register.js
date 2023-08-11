@@ -1,13 +1,16 @@
 import React from "react";
 import { Form } from "../Form/Form";
 import { Link } from "react-router-dom";
-
+import "./Register.css";
 
 function Register() {
   return (
     <section className="register">
-      
-      <Form title="Добро пожаловать!" buttonText = "Зарегистрироваться" label ="form__label"></Form>
+      <Form
+        title="Добро пожаловать!"
+        buttonText="Зарегистрироваться"
+        label="form__label"
+      ></Form>
       <p className="form__span">
         Уже зарегистрированы?
         <Link to="/signin" className="form__link">
@@ -16,7 +19,7 @@ function Register() {
         </Link>
       </p>
     </section>
-  )
+  );
 }
 
 export { Register };

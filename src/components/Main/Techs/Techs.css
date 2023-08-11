@@ -34,12 +34,6 @@
   }
 }
 
-.techs__line {
-  width: 100%;
-  height: 1px;
-  border-top: 0.5px solid #DADADA;
-}
-
 .techs__subtitle {
   color: #fff;
   text-align: center;
@@ -108,7 +102,7 @@
 @media screen and (max-width: 500px) {
   .techs__container {
     max-width: 178px;
-    gap:10px 10px;
+    gap: 10px 10px;
   }
 }
 

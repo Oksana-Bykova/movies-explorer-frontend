@@ -1,5 +1,5 @@
 .filter-checkbox {
-    margin-top: 26px;
+  margin-top: 26px;
 }
 
 .filter-checkbox__input {
@@ -27,13 +27,13 @@
 }
 
 .filter-checkbox__visible-checkbox {
-    display: inline-block;
-    vertical-align: middle;
-    width: 36px;
-    height: 20px;
-    background-image: url(../../../images/CheckboxOff.svg);
+  display: inline-block;
+  vertical-align: middle;
+  width: 36px;
+  height: 20px;
+  background-image: url(../../../images/CheckboxOff.svg);
 }
 
 .filter-checkbox__text {
-    margin-left: 14px;
+  margin-left: 14px;
 }

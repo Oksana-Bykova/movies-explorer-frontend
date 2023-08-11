@@ -40,7 +40,9 @@ function Profile() {
             Редактировать
           </button>
         </form>
-        <Link to="/signin" className="profile__link">Выйти из аккаунта</Link>
+        <Link to="/signin" className="profile__link">
+          Выйти из аккаунта
+        </Link>
       </div>
     </section>
   );

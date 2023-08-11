@@ -40,6 +40,8 @@
   font-weight: 400;
   line-height: normal;
   margin-left: 20px;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 500px) {
@@ -67,35 +69,32 @@
 }
 
 .footer__list {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  list-style: none;
 }
 
 @media screen and (max-width: 500px) {
   .footer__list {
     flex-direction: column;
     padding: 0;
-    
-    
   }
 }
 
 .footer__year {
-
 }
 
 @media screen and (max-width: 769px) {
   .footer__year {
-font-size: 13px;
-font-weight: 400;
-line-height: normal;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: normal;
   }
 }
 
 @media screen and (max-width: 500px) {
   .footer__year {
-margin-top: 30px;
+    margin-top: 30px;
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../images/logo.svg";
+import "./Form.css";
 
 function Form(props) {
   return (
@@ -8,8 +9,7 @@ function Form(props) {
         <img src={logo} alt="логотип" className="form__logo"></img>
         <h1 className="form__title">{props.title}</h1>
         <form className="form__form" onSubmit={props.handleSubmit}>
-
-        <label className={props.label} htmlFor="name">
+          <label className={props.label} htmlFor="name">
             Имя
             <input
               type="text"
@@ -40,7 +40,7 @@ function Form(props) {
           </label>
 
           <label className="form__label" htmlFor="password">
-          Пароль
+            Пароль
             <input
               type="text"
               className="form__input"

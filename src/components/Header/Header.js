@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../images/logo.svg";
 import { HeaderAuthorized } from "../Header/HeaderAuthorized/HeaderAuthorized";
 import { HeaderLoginIn } from "../Header/HeaderLoginIn/HeaderLoginIn";
+import "./Header.css";
 
 function Header(props) {
   return (
