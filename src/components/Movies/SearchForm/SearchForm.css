@@ -15,15 +15,28 @@
 }
 
 .search-form__form {
-  min-height: 1140px;
-  min-height: 72px;
-  border-radius: 8px;
-  border: 1.5px solid #aaa;
+  
+  
   opacity: 0.2;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   opacity: 1;
+}
+
+.search-form__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1.5px solid #aaa;
+  border-radius: 8px;
+  min-height: 72px;
+  align-items: center;
+}
+
+@media screen and (max-width: 400px) {
+  .search-form__container {
+    min-height: 56px;
+  }
 }
 
 @media screen and (max-width: 400px) {

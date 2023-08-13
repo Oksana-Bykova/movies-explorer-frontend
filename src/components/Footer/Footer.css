@@ -1,5 +1,5 @@
 .footer {
-  padding: 79px 70px 0 70px;
+  padding: 82px 70px 0 70px;
 }
 
 @media screen and (max-width: 769px) {
@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 500px) {
   .footer {
-    padding: 66px 10px 0 10px;
+    padding: 84px 10px 0 10px;
   }
 }
 
@@ -79,10 +79,14 @@
   .footer__list {
     flex-direction: column;
     padding: 0;
+    align-items: center;
   }
 }
 
 .footer__year {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
 }
 
 @media screen and (max-width: 769px) {
@@ -97,4 +101,8 @@
   .footer__year {
     margin-top: 30px;
   }
+}
+
+.footer__list-element {
+  display: flex;
 }

@@ -29,6 +29,7 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.72px;
+    margin-bottom: 15px;
   }
 }
 
@@ -50,6 +51,7 @@
   .about-project__container {
     flex-wrap: wrap;
     margin-top: 57px;
+    margin-bottom: 12px;
   }
 }
 
@@ -131,6 +133,7 @@
   background: #303030;
   text-align: center;
   line-height: 36px;
+  color: #FFF;
 }
 
 .about-project__span {

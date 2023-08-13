@@ -9,16 +9,13 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
 function Main() {
-  const isLoggedIn = false;
   return (
     <>
-      <Header loggedIn={isLoggedIn}></Header>
       <Promo></Promo>
       <AboutProject></AboutProject>
       <Techs></Techs>
       <AboutMe></AboutMe>
       <Portfolio></Portfolio>
-      <Footer></Footer>
     </>
   );
 }

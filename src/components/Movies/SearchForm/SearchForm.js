@@ -7,12 +7,19 @@ function SearchForm() {
   return (
     <section className="search-form">
       <form className="search-form__form">
-        <input className="search-form__input" placeholder="Фильмы"></input>
-        <button className="search-form__button" type="submit">
-          Поиск
-        </button>
+        <div className="search-form__container">
+          <input
+            className="search-form__input"
+            placeholder="Фильмы"
+            required=""
+          ></input>
+          <button className="search-form__button" type="submit">
+            Поиск
+          </button>
+        </div>
+        <FilterCheckbox></FilterCheckbox>
       </form>
-      <FilterCheckbox></FilterCheckbox>
+
       <img
         src={line}
         alt="Линия подчеркивания"

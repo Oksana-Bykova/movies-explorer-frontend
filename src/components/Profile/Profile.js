@@ -4,10 +4,9 @@ import "./Profile.css";
 import { Link } from "react-router-dom";
 
 function Profile() {
-  const isLoggedIn = true;
   return (
+    <main>
     <section className="profile">
-      <Header loggedIn={isLoggedIn}></Header>
       <div className="profile__container">
         <h1 className="profile__title">Привет, Виталий</h1>
         <form className="profile__form">
@@ -45,6 +44,7 @@ function Profile() {
         </Link>
       </div>
     </section>
+    </main>
   );
 }
 

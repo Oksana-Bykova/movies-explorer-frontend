@@ -4,7 +4,7 @@ import "./HeaderLoginIn.css";
 
 function HeaderLoginIn() {
   return (
-    <div>
+    <div className="header-login-in">
       <Link to="/signup" className="header-login-in__link">
         {" "}
         Регистрация

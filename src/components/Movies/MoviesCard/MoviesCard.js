@@ -7,7 +7,7 @@ function MoviesCard(props) {
     target.classList.toggle("movies-card__button_active");
   }
   return (
-    <li className="movies-card__element">
+    <li className="movies-card">
       <div className="movies-card__container">
         <h2 className="movies-card__name">{props.card.name}</h2>
         <p className="movies-card__time">{props.card.time}</p>
@@ -18,7 +18,7 @@ function MoviesCard(props) {
         src={props.card.image}
       />
 
-      <button className="movies-card__button" onClick={ClickButton}></button>
+      <button className="movies-card__button" type="button" onClick={ClickButton}>{props.button}</button>
     </li>
   );
 }

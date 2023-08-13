@@ -2,18 +2,28 @@ import React from "react";
 import { MoviesCard } from "../MoviesCard/MoviesCard";
 import Cards from "../../../utils/constants";
 import "./MoviesCardList.css";
+import { useLocation } from "react-router-dom";
 
 function MoviesCardList(props) {
+  let { pathname } = useLocation();
   return (
     <section className="movies-card-list">
-      <ul className="movies-card-list__ul">
+      <ul  className={`${
+        pathname === "/saved-movies"? "movies-card-list__ul-smovies" : "movies-card-list__ul"
+      } `}>
         {Cards.map((item) => (
-          <MoviesCard key={item._id} card={item} hendler={props.hendler} />
+          <MoviesCard key={item._id} card={item} hendler={props.hendler} button="Сохранить" />
         ))}
       </ul>
-      <button className="movies-card-list__button">Еще</button>
+      <button className={props.button} type="button">Еще</button>
     </section>
   );
 }
 
 export { MoviesCardList };
+
+
+
+
+     
+   

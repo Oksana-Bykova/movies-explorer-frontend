@@ -3,18 +3,24 @@ import logo from "../../images/logo.svg";
 import { HeaderAuthorized } from "../Header/HeaderAuthorized/HeaderAuthorized";
 import { HeaderLoginIn } from "../Header/HeaderLoginIn/HeaderLoginIn";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   return (
-    <section
+    <section className="header">
+    <div
       className={`${
         props.loggedIn ? "header__authorized" : "header__login-in"
-      }`}
+      } `}
     >
-      <img className="header__logo" alt="логотип" src={logo}></img>
-      <div className="header__container">
+     <Link to="/">
+     <img className="header__logo" alt="логотип" src={logo}></img>
+     </Link> 
+      
+      <nav className="header__container">
         {props.loggedIn ? <HeaderAuthorized /> : <HeaderLoginIn />}
-      </div>
+      </nav>
+    </div>
     </section>
   );
 }

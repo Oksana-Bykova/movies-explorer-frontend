@@ -5,20 +5,22 @@ import "./Login.css";
 
 function Login() {
   return (
-    <section className="login">
-      <Form
-        title="Рады видеть!"
-        buttonText="Войти"
-        label="form__labelinvisible"
-      ></Form>
-      <p className="form__span">
-        Еще не зарегистрированы?
-        <Link to="/signup" className="form__link">
-          {" "}
-          Регистрация
-        </Link>
-      </p>
-    </section>
+    <main>
+      <section className="login">
+        <Form
+          title="Рады видеть!"
+          buttonText="Войти"
+          label="form__labelinvisible"
+        ></Form>
+        <p className="login__span">
+          Еще не зарегистрированы?
+          <Link to="/signup" className="login__link">
+            {" "}
+            Регистрация
+          </Link>
+        </p>
+      </section>
+    </main>
   );
 }
 

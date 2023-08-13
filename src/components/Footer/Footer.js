@@ -10,7 +10,7 @@ function Footer() {
       <div className="footer__container">
         <div className="footer__year">© 2023</div>
         <ul className="footer__list">
-          <li>
+          <li className="footer__list-element">
             <a
               href="https://practicum.yandex.ru/"
               className="footer__link"
@@ -21,7 +21,7 @@ function Footer() {
             </a>
           </li>
 
-          <li className="footer__link">
+          <li className="footer__list-element">
             <a
               href="https://github.com/"
               className="footer__link"

@@ -1,18 +1,16 @@
 import React from "react";
 import { SearchForm } from "../Movies/SearchForm/SearchForm";
 import { MoviesCardList } from "../Movies/MoviesCardList/MoviesCardList";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import "./SavedMovies.css";
 
 function SavedMovies() {
-  const isLoggedIn = true;
   return (
-    <>
-      <Header loggedIn={isLoggedIn}></Header>
+    <main>
+    <section className="saved-movies">
       <SearchForm></SearchForm>
-      <MoviesCardList></MoviesCardList>
-      <Footer></Footer>
-    </>
+      <MoviesCardList button = "movies-card-list__button-fof-saved-movies"></MoviesCardList>
+    </section>
+    </main>
   );
 }
 export { SavedMovies };

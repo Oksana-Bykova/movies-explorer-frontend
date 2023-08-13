@@ -15,19 +15,13 @@ function Portfolio() {
             rel="noreferrer"
           >
             Статичный сайт
-          </a>
-          <a
-            href="https://github.com/Oksana-Bykova/how-to-learn"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {" "}
             <img
               className="portfolio__image"
               src={image}
               alt="Картинка стрелочка (ссылка)"
             ></img>
           </a>
+          
         </li>
         <li className="portfolio__link-container">
           <a
@@ -37,18 +31,13 @@ function Portfolio() {
             rel="noreferrer"
           >
             Адаптивный сайт
-          </a>
-          <a
-            href="https://oksana-bykova.github.io/russian-travel/"
-            target="_blank"
-            rel="noreferrer"
-          >
             <img
               className="portfolio__image"
               src={image}
               alt="Картинка стрелочка (ссылка)"
             ></img>
           </a>
+          
         </li>
         <li className="portfolio__link-container">
           <a
@@ -58,19 +47,13 @@ function Portfolio() {
             rel="noreferrer"
           >
             Одностраничное приложение
-          </a>
-          <a
-            href="https://github.com/Oksana-Bykova/react-mesto-api-full-gha"
-            target="_blank"
-            rel="noreferrer"
-          >
             <img
               className="portfolio__image"
               src={image}
               alt="Картинка стрелочка (ссылка)"
             ></img>
           </a>
-        </li>
+        </li>  
       </ul>
     </section>
   );
