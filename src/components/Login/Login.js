@@ -11,14 +11,11 @@ function Login() {
           title="Рады видеть!"
           buttonText="Войти"
           label="form__labelinvisible"
+          link="Регистрация"
+          path="/signup"
+          span="Еще не зарегистрированы?"
+          button="form__button-login"
         ></Form>
-        <p className="login__span">
-          Еще не зарегистрированы?
-          <Link to="/signup" className="login__link">
-            {" "}
-            Регистрация
-          </Link>
-        </p>
       </section>
     </main>
   );

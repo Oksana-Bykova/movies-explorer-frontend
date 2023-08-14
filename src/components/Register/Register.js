@@ -11,14 +11,11 @@ function Register() {
         title="Добро пожаловать!"
         buttonText="Зарегистрироваться"
         label="form__label"
+        link="Войти"
+        span=" Уже зарегистрированы?"
+        path="/signin"
+        button="form__button"
       ></Form>
-      <p className="register__span">
-        Уже зарегистрированы?
-        <Link to="/signin" className="register__link">
-          {" "}
-          Войти
-        </Link>
-      </p>
     </section>
     </main>
   );

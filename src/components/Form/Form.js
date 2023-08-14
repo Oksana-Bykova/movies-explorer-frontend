@@ -22,7 +22,7 @@ function Form(props) {
               id="name"
               minLength={2}
               maxLength={30}
-              required=""
+              required
               onChange={props.handleEmail}
               value={props.valueEmail}
             />
@@ -37,7 +37,7 @@ function Form(props) {
               id="email"
               minLength={2}
               maxLength={30}
-              required=""
+              required
               onChange={props.handleEmail}
               value={props.valueEmail}
             />
@@ -52,14 +52,20 @@ function Form(props) {
               id="password"
               minLength={2}
               maxLength={30}
-              required=""
+              required
               onChange={props.handlePassword}
               value={props.valuePassword}
             />
           </label>
-          <button type="submit" className="form__button">
+          <button type="submit" className={props.button}>
             {props.buttonText}
           </button>
+          <p className="form__span">{props.span}
+        <Link to={props.path} className="form__link">
+          {" "}
+          {props.link}
+        </Link>
+      </p>
         </form>
       </div>
     </>

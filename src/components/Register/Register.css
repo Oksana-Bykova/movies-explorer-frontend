@@ -1,38 +1,3 @@
 .register {
   min-height: 100vh;
 }
-
-.register__span {
-  color: #8b8b8b;
-  text-align: center;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-decoration: none;
-  margin-top: 16px;
-}
-
-@media screen and (max-width: 458px) {
-  .register__span{
-    font-size: 12px;
-  }
-}
-
-.register__link {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #4285f4;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: normal;
-  text-decoration: none;
-  margin-top: 16px;
-}
-
-@media screen and (max-width: 458px) {
-  .register__link {
-    font-size: 12px;
-  }
-}

@@ -45,3 +45,5 @@ a:hover {
 input:focus {
   outline: 3px solid #FF004D
 }
+
+input:invalid {color: #FF004D;}
