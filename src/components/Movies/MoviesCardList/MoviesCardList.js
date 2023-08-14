@@ -12,7 +12,7 @@ function MoviesCardList(props) {
         pathname === "/saved-movies"? "movies-card-list__ul-smovies" : "movies-card-list__ul"
       } `}>
         {Cards.map((item) => (
-          <MoviesCard key={item._id} card={item} hendler={props.hendler} button="Сохранить" />
+          <MoviesCard key={item._id} card={item} hendler={props.hendler} button="Сохранить" buttonclass = {props.buttonclass}/>
         ))}
       </ul>
       <button className={props.button} type="button">Еще</button>

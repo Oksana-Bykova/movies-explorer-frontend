@@ -18,7 +18,7 @@ function MoviesCard(props) {
         src={props.card.image}
       />
 
-      <button className="movies-card__button" type="button" onClick={ClickButton}>{props.button}</button>
+      <button className={props.buttonclass} type="button" onClick={ClickButton}>{props.button}</button>
     </li>
   );
 }

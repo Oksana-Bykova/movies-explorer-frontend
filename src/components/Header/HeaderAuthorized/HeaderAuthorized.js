@@ -66,7 +66,7 @@ useEffect(() => {
                 >
                   Аккаунт
                   <div className="header-authorized__container-icon">
-                    <img src={icon} className="header-authorized__icon"></img>
+                    <img src={icon} className="header-authorized__icon" alt="иконка пользователя"/ >
                   </div>
                 </Link>
               </li>

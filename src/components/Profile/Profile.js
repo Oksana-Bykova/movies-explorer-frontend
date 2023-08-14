@@ -25,7 +25,7 @@ function Profile() {
           <div className="profile__form-container">
             <label className="profile__label">Email</label>
             <input
-              type="text"
+              type="email"
               className="profile__input"
               name="email"
               id="email"

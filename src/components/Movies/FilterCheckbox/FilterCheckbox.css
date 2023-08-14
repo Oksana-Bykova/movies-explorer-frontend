@@ -7,7 +7,7 @@
 }
 
 .filter-checkbox__input:disabled + .filter-checkbox__visible-checkbox {
-  background-image: url(../../../images/CheckboxOff.svg);
+  background-image: url(../../../images/checkoff.svg);
 }
 
 .filter-checkbox__input:checked + .filter-checkbox__visible-checkbox {
@@ -28,7 +28,7 @@
   vertical-align: middle;
   width: 36px;
   height: 20px;
-  background-image: url(../../../images/CheckboxOff.svg);
+  background-image: url(../../../images/checkoff.svg);
   cursor: pointer;
 }
 

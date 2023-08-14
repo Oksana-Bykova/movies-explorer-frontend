@@ -98,6 +98,7 @@
   padding: 0;
   flex-wrap: wrap;
   flex-grow: 2;
+  row-gap: 10px;
 }
 
 @media screen and (max-width: 769px) {

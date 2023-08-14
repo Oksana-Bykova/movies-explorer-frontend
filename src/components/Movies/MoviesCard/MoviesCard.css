@@ -108,3 +108,19 @@
   color: transparent;
   background-image: url(../../../images/ok.svg);
 }
+
+.movies-card__button-saved-movies {
+  background-image: url(../../../images/buttonsavedmovies.svg);
+  border-radius: 30px;
+  background-color: #313131;
+  width: 100px;
+  height: 29px;
+  border: 0;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  color: transparent;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 11px;
+}

@@ -17,7 +17,8 @@ html,body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 button:hover {
@@ -43,7 +44,7 @@ a:hover {
 }
 
 input:focus {
-  outline: 3px solid #FF004D
+  outline: 1px solid #FF004D
 }
 
 input:invalid {color: #FF004D;}

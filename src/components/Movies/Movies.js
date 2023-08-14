@@ -8,7 +8,7 @@ function Movies() {
   return (
     <main>
       <SearchForm></SearchForm>
-      <MoviesCardList button = "movies-card-list__button"></MoviesCardList>
+      <MoviesCardList button = "movies-card-list__button" buttonclass="movies-card__button"> </MoviesCardList>
     </main>
   );
 }

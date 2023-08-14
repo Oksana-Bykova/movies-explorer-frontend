@@ -31,7 +31,7 @@ function Form(props) {
           <label className="form__label" htmlFor="email">
             Email
             <input
-              type="text"
+              type="email"
               className="form__input"
               name="email"
               id="email"
@@ -46,7 +46,7 @@ function Form(props) {
           <label className="form__label" htmlFor="password">
             Пароль
             <input
-              type="text"
+              type="password"
               className="form__input"
               name="password"
               id="password"

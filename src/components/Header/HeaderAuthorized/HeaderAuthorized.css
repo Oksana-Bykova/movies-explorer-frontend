@@ -157,6 +157,12 @@
   }
 }
 
+@media screen and (max-width: 769px) {
+  .header-authorized__li-burger:last-child {
+    margin-top: auto;
+    
+  }
+}
 
 .header-authorized__li-burger:active {
   font-weight: 500;
@@ -185,6 +191,7 @@
 
 .header-authorized__ul-burger:first-child{
   padding-top: 158px;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 411px) {
