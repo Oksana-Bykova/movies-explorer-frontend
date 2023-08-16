@@ -9,9 +9,9 @@ function AboutProject() {
       <Line></Line>
       <ul className="about-project__container">
         <li className="about-project__information">
-          <p className="about-project__subtitle">
+          <h3 className="about-project__subtitle">
             Дипломный проект включал 5 этапов
-          </p>
+          </h3>
           <p className="about-project__paragraph">
             Составление плана, работу над бэкендом, вёрстку, добавление
             функциональности и финальные доработки.
