@@ -1,0 +1,50 @@
+html,body {
+  min-height: 100vh;
+}
+
+.root {
+  width: 100%;
+  background-color: #202020;
+  min-height: 100vh;
+}
+
+.page {
+  font-family: "Inter", "Arial", "Helvetica Neue", sans-serif;
+  font-style: normal;
+  color: #ffffff;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+link:hover {
+  opacity: 0.7;
+}
+
+a:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.footerSite {
+  flex-shrink: 0;
+}
+
+input:focus {
+  outline: 1px solid #FF004D
+}
+
+input:invalid {color: #FF004D;}
