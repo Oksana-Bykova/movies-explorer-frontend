@@ -22,13 +22,16 @@ import "./App.css";
 
 function App() {
   let { pathname } = useLocation();
-  console.log(pathname);
-  const loggedIn = true;
+  //console.log(pathname);
+  //const loggedIn = true;
   const notLoggedIn = false;
   const navigate = useNavigate();
 
 //успешная или неуспешная регистрация
   const [succses, setSuccses] = React.useState(false);
+  //стейт для определения вошел пользователь в ситсему или нет
+ const [loggedIn, setLoggedIn] = React.useState(false);
+
 
 //сабмит формы регистрации
 function handleSubmitRegister(email, password, name) {
@@ -36,7 +39,6 @@ function handleSubmitRegister(email, password, name) {
   auth.register(email, password, name)
   .then((res) => {
     setSuccses(true);
-    console.log("Красотища какая")
     navigate('/signin', {replace: true});
     
 })
@@ -47,7 +49,25 @@ function handleSubmitRegister(email, password, name) {
   })
  }
 
- 
+//функция задает значение true для  стейт переменной LoggedIn
+ function handleloggedIn(data) {
+  setLoggedIn(true);
+ }
+
+//сабмит авторизации(ввода логина)
+function handleSubmitLogin (arr) {
+  auth.authoize(arr.email, arr.password)
+  .then((data) => {
+    if (data.jwt){
+      localStorage.setItem('jwt', data.jwt);
+      //не имеет смысла передавать массив?
+      handleloggedIn(arr);
+      navigate('/', {replace: true});
+    }})
+    .catch((err) => console.log(err));
+    
+ }
+
 
   return (
     <div className="root">
@@ -72,7 +92,7 @@ function handleSubmitRegister(email, password, name) {
               <Route path="/" element={<Main></Main>} />
               <Route path="/movies" element={<Movies />} />
               <Route path="/signup" element={<Register onRegister={handleSubmitRegister} />} />
-              <Route path="/signin" element={<Login />} />
+              <Route path="/signin" element={<Login onRegister={handleSubmitLogin}/>} />
               <Route path="*" element={<NotFound />} />
               <Route path="/saved-movies" element={<SavedMovies />} />
               <Route path="/profile" element={<Profile />} />
