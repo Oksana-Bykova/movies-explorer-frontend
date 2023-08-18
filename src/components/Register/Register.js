@@ -1,9 +1,34 @@
 import React from "react";
 import { Form } from "../Form/Form";
-import { Link } from "react-router-dom";
 import "./Register.css";
 
-function Register() {
+function Register(props) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState("");
+
+  function handleEmail(evt) {
+    setEmail(evt.target.value);
+  }
+
+  function handlePassword(evt) {
+    setPassword(evt.target.value);
+  }
+
+  function handleName(evt) {
+    setName(evt.target.value);
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    const arr = {
+      email: email,
+      password: password,
+      name: name,
+    };
+    props.onRegister(email, password, name);
+  }
+
   return (
     <main>
     <section className="register">
@@ -15,6 +40,13 @@ function Register() {
         span=" Уже зарегистрированы?"
         path="/signin"
         button="form__button"
+        handleSubmit={handleSubmit}
+        handleEmail={handleEmail}
+        handlePassword={handlePassword}
+        handleName={handleName}
+        valueEmail={email}
+        valuePassword={password}
+        valueName={name}
       ></Form>
     </section>
     </main>

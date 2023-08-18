@@ -22,9 +22,9 @@ function Form(props) {
               id="name"
               minLength={2}
               maxLength={30}
-              required
-              onChange={props.handleEmail}
-              value={props.valueEmail}
+              
+              onChange={props.handleName}
+              value={props.valueName}
             />
           </label>
 

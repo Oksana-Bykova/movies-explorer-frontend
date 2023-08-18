@@ -16,6 +16,7 @@ import { SavedMovies } from "../SavedMovies/SavedMovies.js";
 import { Profile } from "../Profile/Profile.js";
 import Header from "../../components/Header/Header.js";
 import Footer from "../Footer/Footer.js";
+import * as auth from "../../utils/auth.js";
 
 import "./App.css";
 
@@ -24,6 +25,29 @@ function App() {
   console.log(pathname);
   const loggedIn = true;
   const notLoggedIn = false;
+  const navigate = useNavigate();
+
+//успешная или неуспешная регистрация
+  const [succses, setSuccses] = React.useState(false);
+
+//сабмит формы регистрации
+function handleSubmitRegister(email, password, name) {
+    
+  auth.register(email, password, name)
+  .then((res) => {
+    setSuccses(true);
+    console.log("Красотища какая")
+    navigate('/signin', {replace: true});
+    
+})
+  .catch((err) => {
+    console.log(err);
+    setSuccses(false)
+    // не нужно? handleRegisterAvatar()
+  })
+ }
+
+ 
 
   return (
     <div className="root">
@@ -47,7 +71,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Main></Main>} />
               <Route path="/movies" element={<Movies />} />
-              <Route path="/signup" element={<Register />} />
+              <Route path="/signup" element={<Register onRegister={handleSubmitRegister} />} />
               <Route path="/signin" element={<Login />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/saved-movies" element={<SavedMovies />} />
