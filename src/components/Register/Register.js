@@ -7,6 +7,10 @@ function Register(props) {
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
 
+  React.useEffect(()=> {
+    props.cleanErr();
+  },[]);  
+
   function handleEmail(evt) {
     setEmail(evt.target.value);
   }
@@ -47,6 +51,8 @@ function Register(props) {
         valueEmail={email}
         valuePassword={password}
         valueName={name}
+        spanErr="form__span-error-submit"
+        err = {props.err}
       ></Form>
     </section>
     </main>

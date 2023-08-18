@@ -40,6 +40,8 @@ function Login(props) {
           valueEmail={email}
           handlePassword={handlePassword}
           valuePassord={password}
+          spanErr="form__span-error-submit"
+          err={props.err}
         ></Form>
       </section>
     </main>

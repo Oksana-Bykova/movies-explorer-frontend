@@ -31,6 +31,13 @@ function App() {
   const [succses, setSuccses] = React.useState(false);
   //стейт для определения вошел пользователь в ситсему или нет
  const [loggedIn, setLoggedIn] = React.useState(false);
+ //стейт для хранения текста ошибки от сервера при регистрации и авторизации
+ const [err, setErr] = React.useState("");
+
+ 
+
+
+
 
 
 //сабмит формы регистрации
@@ -40,12 +47,14 @@ function handleSubmitRegister(email, password, name) {
   .then((res) => {
     setSuccses(true);
     navigate('/signin', {replace: true});
-    
+    setErr("");
 })
   .catch((err) => {
-    console.log(err);
-    setSuccses(false)
-    // не нужно? handleRegisterAvatar()
+    setSuccses(false);
+    if (err.includes('409')) {
+      setErr("Пользователь с таким email уже существует");
+    }
+    
   })
  }
 
@@ -62,12 +71,21 @@ function handleSubmitLogin (arr) {
       localStorage.setItem('jwt', data.jwt);
       //не имеет смысла передавать массив?
       handleloggedIn(arr);
+      setErr("");
       navigate('/', {replace: true});
     }})
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      if(err.includes('401')) {
+        setErr("Неверный логин или пароль");
+      }
+    });
     
  }
 
+ //очищаем ошибку сабмита формы регисрации и авторизации (пробросим при монтировании страницы)
+ function cleanErr() {
+  setErr("")
+ }
 
   return (
     <div className="root">
@@ -91,8 +109,8 @@ function handleSubmitLogin (arr) {
             <Routes>
               <Route path="/" element={<Main></Main>} />
               <Route path="/movies" element={<Movies />} />
-              <Route path="/signup" element={<Register onRegister={handleSubmitRegister} />} />
-              <Route path="/signin" element={<Login onRegister={handleSubmitLogin}/>} />
+              <Route path="/signup" element={<Register onRegister={handleSubmitRegister} err={err} cleanErr={cleanErr} />} />
+              <Route path="/signin" element={<Login onRegister={handleSubmitLogin} err={err}/>} />
               <Route path="*" element={<NotFound />} />
               <Route path="/saved-movies" element={<SavedMovies />} />
               <Route path="/profile" element={<Profile />} />

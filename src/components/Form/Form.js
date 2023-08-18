@@ -57,6 +57,7 @@ function Form(props) {
               value={props.valuePassword}
             />
           </label>
+          <p className={props.spanErr}>{props.err}</p>
           <button type="submit" className={props.button}>
             {props.buttonText}
           </button>

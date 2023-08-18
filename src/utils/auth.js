@@ -7,6 +7,12 @@ function checkResponse(res) {
     return res.json();
   }
   return Promise.reject(`Ошибка: ${res.status}`);
+
+ //Promise.reject( res.json().then((res) => {
+  //const message = res.message;
+ // return (message);
+ //} )) 
+ 
 }
 
 export const register = (email, password, name) => {
