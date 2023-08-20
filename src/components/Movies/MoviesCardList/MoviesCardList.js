@@ -1,6 +1,6 @@
 import React from "react";
 import { MoviesCard } from "../MoviesCard/MoviesCard";
-import Cards from "../../../utils/constants";
+import { Cards }  from "../../../utils/constants";
 import "./MoviesCardList.css";
 import { useLocation } from "react-router-dom";
 

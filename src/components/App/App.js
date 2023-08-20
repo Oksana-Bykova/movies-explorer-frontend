@@ -36,10 +36,6 @@ function App() {
 
  
 
-
-
-
-
 //сабмит формы регистрации
 function handleSubmitRegister(email, password, name) {
     

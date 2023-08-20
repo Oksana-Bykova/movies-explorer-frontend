@@ -1,7 +1,7 @@
 import React from "react";
-import { Form } from "../Form/Form";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import logo from "../../images/logo.svg";
 
 function Login(props) {
   const [email, setEmail] = React.useState("");
@@ -27,22 +27,58 @@ function Login(props) {
   return (
     <main>
       <section className="login">
-        <Form
-          title="Рады видеть!"
-          buttonText="Войти"
-          label="form__labelinvisible"
-          link="Регистрация"
-          path="/signup"
-          span="Еще не зарегистрированы?"
-          button="form__button-login"
-          handleSubmit={handleSubmit}
-          handleEmail={handleEmail}
-          valueEmail={email}
-          handlePassword={handlePassword}
-          valuePassord={password}
-          spanErr="form__span-error-submit"
-          err={props.err}
-        ></Form>
+  
+        <div className="form">
+        <Link to="/">
+          <img src={logo} alt="логотип" className="form__logo"></img>
+        </Link>
+
+        <h1 className="form__title">Рады видеть!</h1>
+        <form className="form__form" onSubmit={handleSubmit}>
+          
+          <label className="form__label" htmlFor="email">
+            Email
+            <input
+              type="email"
+              className="form__input"
+              name="email"
+              id="email"
+              minLength={2}
+              maxLength={30}
+              required
+              onChange={props.handleChange}
+              value={props.values}
+            />
+            <span className="form__error">{props.errSpan}</span>
+          </label>
+
+          <label className="form__label" htmlFor="password">
+            Пароль
+            <input
+              type="password"
+              className="form__input"
+              name="password"
+              id="password"
+              minLength={2}
+              maxLength={30}
+              required
+              onChange={props.handleChange}
+              value={props.values}
+            />
+            <span className="form__error">{props.errSpan}</span>
+          </label>
+          <p className="form__span-error-submit">{props.err}</p>
+          <button type="submit" className="form__button-login">
+          Войти
+          </button>
+          <p className="form__span">Еще не зарегистрированы?
+        <Link to="/signup" className="form__link">
+          {" "}
+          Регистрация
+        </Link>
+      </p>
+        </form>
+      </div>
       </section>
     </main>
   );

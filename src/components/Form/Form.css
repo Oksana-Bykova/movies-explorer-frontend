@@ -179,3 +179,10 @@
   line-height: normal;
   margin: 119px auto 20px;
 }
+
+.form__error {
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+}

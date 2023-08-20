@@ -23,9 +23,10 @@ function Form(props) {
               minLength={2}
               maxLength={30}
               
-              onChange={props.handleName}
-              value={props.valueName}
+              onChange={props.handleChange}
+              value={props.values}
             />
+            <span className="form__error">{props.errSpan}</span>
           </label>
 
           <label className="form__label" htmlFor="email">
@@ -38,9 +39,10 @@ function Form(props) {
               minLength={2}
               maxLength={30}
               required
-              onChange={props.handleEmail}
-              value={props.valueEmail}
+              onChange={props.handleChange}
+              value={props.values}
             />
+            <span className="form__error">{props.errSpan}</span>
           </label>
 
           <label className="form__label" htmlFor="password">
@@ -53,9 +55,10 @@ function Form(props) {
               minLength={2}
               maxLength={30}
               required
-              onChange={props.handlePassword}
-              value={props.valuePassword}
+              onChange={props.handleChange}
+              value={props.values}
             />
+            <span className="form__error">{props.errSpan}</span>
           </label>
           <p className={props.spanErr}>{props.err}</p>
           <button type="submit" className={props.button}>
