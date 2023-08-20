@@ -89,7 +89,7 @@ function handleSubmitLogin (arr) {
         <div className="content">
           <header>
             {pathname === "/" ? (
-              <Header loggedIn={notLoggedIn}></Header>
+              <Header loggedIn={loggedIn}></Header>
             ) : (
               <></>
             )}

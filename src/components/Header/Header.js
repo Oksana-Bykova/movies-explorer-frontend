@@ -3,14 +3,16 @@ import logo from "../../images/logo.svg";
 import { HeaderAuthorized } from "../Header/HeaderAuthorized/HeaderAuthorized";
 import { HeaderLoginIn } from "../Header/HeaderLoginIn/HeaderLoginIn";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Header(props) {
+  let { pathname } = useLocation();
+
   return (
     <section className="header">
     <div
       className={`${
-        props.loggedIn ? "header__authorized" : "header__login-in"
+        pathname === "/" ? "header__login-in" : "header__authorized"
       } `}
     >
      <Link to="/">
