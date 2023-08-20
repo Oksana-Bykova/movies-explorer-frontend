@@ -103,7 +103,7 @@ function Register(props) {
           </label>
 
           <p className="form__span-error-submit">{props.err}</p>
-          <button type="submit" className="form__button">
+          <button type="submit" className={!isValid ? "form__button-disabled" :"form__button-login"} disabled = { !isValid}>
           Зарегистрироваться
           </button>
           <p className="form__span">Уже зарегистрированы?
