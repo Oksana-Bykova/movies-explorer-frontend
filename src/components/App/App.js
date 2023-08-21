@@ -19,6 +19,7 @@ import Footer from "../Footer/Footer.js";
 import * as auth from "../../utils/auth.js";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import { api } from "../../utils/MainApi.js";
+import { PopupWithSubmit } from "../PopupSubmit/PopupSubmit.js";
 
 import "./App.css";
 
@@ -39,6 +40,12 @@ function App() {
  //стейт переменная для информации о текущем пользователе
  const [currentUser, setCurrentUser] = React.useState({});
 
+ //стейт дл хранения состояния попапа
+ const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+
+ //стейт для хранения сообщения попапа
+ const [messagePopup, setMessagePopup] = React.useState("");
+
  React.useEffect(() => {
   if (loggedIn) {
     Promise.all([api.getProfileInformation()])
@@ -55,6 +62,15 @@ React.useEffect(()=> {
   tokenCheck();
 },[]);
 
+//функция открытия попапа 
+function handleOpenPopup() {
+  setIsPopupOpen(true);
+}
+
+// функция закрытия попапа
+function handlePopupClose() {
+  setIsPopupOpen(false);
+}
 
  //сохраняем токен 
  function tokenCheck() {
@@ -123,6 +139,8 @@ function handleSubmitLogin (email, password) {
   setLoggedIn(false);
   localStorage.removeItem('jwt');
   console.log('вы вышли из профиля');
+  setMessagePopup("Вы вышли из профиля");
+  handleOpenPopup();
  };
 
  //обработка формы редактирования профиля
@@ -132,7 +150,8 @@ function handleSubmitLogin (email, password) {
     .editProfile(data)
     .then((data) => {
       setCurrentUser(data);
-      //closeAllPopups();
+      setMessagePopup("Информация профиля успешно обновлена");
+      handleOpenPopup();
     })
 
     .catch((err) => console.log(err));
@@ -179,6 +198,7 @@ function handleSubmitLogin (email, password) {
           )}
         </footer>
       </div>
+      <PopupWithSubmit textPopup = {messagePopup} isOpen={isPopupOpen} onClick= {handlePopupClose}/>
     </div>
     </CurrentUserContext.Provider>
   );
