@@ -53,7 +53,7 @@ class Api {
         },
         body: JSON.stringify({
           name: data.name,
-          about: data.email,
+          email: data.email,
         }),
       }).then((res) => this._checkResponse(res));
     }

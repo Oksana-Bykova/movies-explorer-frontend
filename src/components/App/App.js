@@ -126,6 +126,7 @@ function handleSubmitLogin (arr) {
 
  //обработка формы редактирования профиля
  function handleUpdateUser(data) {
+  console.log(data);
   api
     .editProfile(data)
     .then((data) => {

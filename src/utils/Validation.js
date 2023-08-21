@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 
 
   //хук управления формой и валидации формы
@@ -26,5 +26,5 @@ import { useState, useCallback } from "react";
       [setValues, setErrors, setIsValid]
     );
   
-    return { values, handleChange, errors, isValid, resetForm };
+    return { values, handleChange, errors, isValid, resetForm, setValues };
   }
