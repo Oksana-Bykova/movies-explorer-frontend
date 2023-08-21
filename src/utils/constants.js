@@ -99,7 +99,8 @@ const Cards = [
   },
 ];
 
-const EMAIL_PATTERN = "([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})";
-const NAME__PATTERN = "^[a-zA-Z][a-zA-Z0-9-]+$";
+const EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
+//const NAME__PATTERN = "^[a-zA-Z][a-zA-Z0-9-]+$";
+const NAME__PATTERN = "^[a-zA-Z][a-zA-Z0-9-]+$";
 export { EMAIL_PATTERN, NAME__PATTERN, Cards };

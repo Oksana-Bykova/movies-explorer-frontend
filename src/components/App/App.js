@@ -76,8 +76,10 @@ function handleSubmitRegister(email, password, name) {
   auth.register(email, password, name)
   .then((res) => {
     setSuccses(true);
-    navigate('/signin', {replace: true});
     setErr("");
+    handleSubmitLogin(email, password);
+    navigate('/movies', {replace: true});
+    
 })
   .catch((err) => {
     setSuccses(false);
@@ -89,20 +91,19 @@ function handleSubmitRegister(email, password, name) {
  }
 
 //функция задает значение true для  стейт переменной LoggedIn
- function handleloggedIn(data) {
+ function handleloggedIn() {
   setLoggedIn(true);
  }
 
 //сабмит авторизации(ввода логина)
-function handleSubmitLogin (arr) {
-  auth.authoize(arr.email, arr.password)
+function handleSubmitLogin (email, password) {
+  auth.authoize(email,password)
   .then((data) => {
     if (data.jwt){
       localStorage.setItem('jwt', data.jwt);
-      //не имеет смысла передавать массив?
-      handleloggedIn(arr);
+      handleloggedIn();
       setErr("");
-      navigate('/', {replace: true});
+      navigate('/movies', {replace: true});
     }})
     .catch((err) => {
       if(err.includes('401')) {

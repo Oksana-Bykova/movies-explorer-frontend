@@ -29,7 +29,7 @@ function Login(props) {
   //  };
    // props.onRegister(arr);
 
-   props.onRegister (values);
+   props.onRegister (email, password);
   }
 
   return (
