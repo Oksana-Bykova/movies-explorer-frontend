@@ -3,7 +3,15 @@ import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import line from "../../../images/text__COLOR_stroke-landing.svg";
 import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm(props) {
+
+
+
+function onClick(evt) {
+  evt.preventDefault();
+  props.onClick();
+}
+
   return (
     <section className="search-form">
       <form className="search-form__form">
@@ -12,8 +20,9 @@ function SearchForm() {
             className="search-form__input"
             placeholder="Фильмы"
             required=""
+            onChange={props.handleValue}
           ></input>
-          <button className="search-form__button" type="submit">
+          <button className="search-form__button" type="submit" onClick={onClick}>
             Поиск
           </button>
         </div>

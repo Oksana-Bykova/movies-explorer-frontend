@@ -20,6 +20,7 @@ import * as auth from "../../utils/auth.js";
 import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import { api } from "../../utils/MainApi.js";
 import { PopupWithSubmit } from "../PopupSubmit/PopupSubmit.js";
+import { moviesApi } from "../../utils/MoviesApi.js";
 
 import "./App.css";
 
@@ -46,6 +47,12 @@ function App() {
  //стейт для хранения сообщения попапа
  const [messagePopup, setMessagePopup] = React.useState("");
 
+ //стейт для хранения найденных фильмов
+ const [films, setFilms] = React.useState([]);
+
+//стейт для хранения данных с формы поиска фильмов 
+const [value, setValue] = React.useState("");
+
  React.useEffect(() => {
   if (loggedIn) {
     Promise.all([api.getProfileInformation()])
@@ -61,6 +68,7 @@ function App() {
 React.useEffect(()=> {
   tokenCheck();
 },[]);
+
 
 //функция открытия попапа 
 function handleOpenPopup() {
@@ -157,6 +165,33 @@ function handleSubmitLogin (email, password) {
     .catch((err) => console.log(err));
 }
 
+//получение всех фильмов
+function handleSubmitSearchMovies() {
+  
+  moviesApi
+  .getMovies()
+  .then((data)=> {
+    console.log(data);
+   data.map((item) => 
+   const compilation = [];
+   (item.nameRU.includes(value)? item ))
+    //setFilms(data);
+  })
+  .catch((err) => console.log(err));
+
+ // React.useEffect(()=> {
+  //  moviesApi
+ //   .getMovies()
+ //   .then((data)=> console.log(data))
+//  },[]);
+}
+
+//собираем данные с формы поиска фильмов 
+function handleValue(evt) {
+setValue(evt.target.value);
+//console.log(value);
+}
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="root">
@@ -179,7 +214,7 @@ function handleSubmitLogin (email, password) {
           <main>
             <Routes>
               <Route path="/" element={<Main></Main>} />
-              <Route path="/movies" element={<Movies />} />
+              <Route path="/movies" element={<Movies onClick={handleSubmitSearchMovies} films={films} handleValue = {handleValue} />} />
               <Route path="/signup" element={<Register onRegister={handleSubmitRegister} err={err} cleanErr={cleanErr} />} />
               <Route path="/signin" element={<Login onRegister={handleSubmitLogin} err={err}/>} />
               <Route path="*" element={<NotFound />} />

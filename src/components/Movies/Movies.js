@@ -3,12 +3,12 @@ import { SearchForm } from "../Movies/SearchForm/SearchForm";
 import { MoviesCardList } from "../Movies/MoviesCardList/MoviesCardList";
 
 
-function Movies() {
+function Movies(props) {
   
   return (
     <main>
-      <SearchForm></SearchForm>
-      <MoviesCardList button = "movies-card-list__button" buttonclass="movies-card__button"> </MoviesCardList>
+      <SearchForm onClick={props.onClick} handleValue={props.handleValue}></SearchForm>
+      <MoviesCardList button = "movies-card-list__button" buttonclass="movies-card__button" films={props.films}> </MoviesCardList>
     </main>
   );
 }
