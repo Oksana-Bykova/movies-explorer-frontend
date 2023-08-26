@@ -121,6 +121,7 @@ function handleSubmitRegister(email, password, name) {
 
 //сабмит авторизации(ввода логина)
 function handleSubmitLogin (email, password) {
+  console.log("");
   auth.authoize(email,password)
   .then((data) => {
     if (data.jwt){
