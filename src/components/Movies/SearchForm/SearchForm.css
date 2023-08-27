@@ -15,8 +15,6 @@
 }
 
 .search-form__form {
-  
-  
   opacity: 0.2;
   display: flex;
   flex-direction: column;
@@ -109,4 +107,18 @@
   .search-form__line {
     margin-top: 62px;
   }
+}
+
+.search-form__container-for-span {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form__span {
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 25px;
+  margin-top: 10px;
 }
