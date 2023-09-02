@@ -215,10 +215,9 @@ function App() {
           setFilms(compilation);
         }
 
-        if (films.length < 1 ) {
+        if (films.length < 1) {
           setIsCheckedButton(true);
         }
-        
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -252,16 +251,28 @@ function App() {
   //функция при клике по кнопке "Cохранить" на фильме
   function ClickButtonSavedFilms(movie) {
     console.log(movie);
-    if (isSaved === false) {
-      api.addFilm(movie).then((data) => {
-        setSavedFilms(data);
-        setIsSaved(true);
-      });
-    } else {
-      api.deleteCard(movie._id).then((data) => {
-        console.log(data);
-      });
-    }
+    // if (isSaved === false) {
+    //   api.addFilm(movie).then((data) => {
+    //     setSavedFilms(data);
+    //     setIsSaved(true);
+    //   });
+    // } else {
+    //   api.deleteCard(movie._id).then((data) => {
+    //     console.log(data);
+    //   });
+    // }
+    console.log(savedFilms);
+    savedFilms.map((item) => {
+      console.log(item.nameRU.toLowerCase());
+      console.log(movie.nameRU.toLowerCase());
+      item.nameRU.toLowerCase().includes(movie.nameRU.toLowerCase())
+        ? api.addFilm(movie).then((data) => {
+            setSavedFilms(data);
+          })
+        : api.deleteCard(movie._id).then((data) => {
+            console.log("фидьм удален");
+          });
+    });
   }
 
   //функция удаления фильма из сохраненных фильмов на роуте /saved-movies
@@ -273,9 +284,7 @@ function App() {
       const newCards = savedFilms.filter((c) => c._id !== movie._id);
       setSavedFilms(newCards);
     });
-
   }
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -308,7 +317,7 @@ function App() {
                       isLoading={isLoading}
                       ClickButtonSavedFilms={ClickButtonSavedFilms}
                       isCheckedButton={isCheckedButton}
-                      isSaved = {isSaved}  
+                      isSaved={isSaved}
                     />
                   }
                 />
