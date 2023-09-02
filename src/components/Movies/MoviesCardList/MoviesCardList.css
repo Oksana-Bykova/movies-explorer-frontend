@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 888px) {
   .movies-card-list__ul {
     grid-column-gap: 24px;
     grid-template-columns: repeat(auto-fill, 342px);
@@ -30,7 +30,7 @@
   
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 888px) {
   .movies-card-list {
     padding-top: 68px;
     padding-left: 30px;
@@ -94,4 +94,8 @@
     grid-template-columns: 300px;
     grid-row-gap: 16px;
   }
+}
+
+.movies-card-list__error {
+  text-align: center;
 }

@@ -21,6 +21,7 @@ import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import { api } from "../../utils/MainApi.js";
 import { PopupWithSubmit } from "../PopupSubmit/PopupSubmit.js";
 import { moviesApi } from "../../utils/MoviesApi.js";
+//import Preloader from "../Movies/Preloader/Preloader.js";
 
 import "./App.css";
 
@@ -59,12 +60,24 @@ function App() {
   //стейт для хранения состояния чекбокса - активен или нет
   const [isChecked, setIsChecked] = React.useState(false);
 
+  //стейт для хранения  значения для прелодера
+  const [isLoading, setIsLoadind] = React.useState(false);
+
+  //стейт для хранения сохраненных фильмов
+  const [savedFilms, setSavedFilms] = React.useState([]);
+
+  //стейт для хранения состояния кнопки "сохранить" под фильмом
+  const [isSaved, setIsSaved] = React.useState(false);
+
+  //стейт для хранения состояния кнопки "Поиск" - была ли нажата
+  const [isCheckedButton, setIsCheckedButton] = React.useState(false);
+
   React.useEffect(() => {
     if (loggedIn) {
-      Promise.all([api.getProfileInformation()])
+      Promise.all([api.getProfileInformation(), api.getInitialFilms()])
         .then((data) => {
           setCurrentUser(data[0]);
-          console.log(data[0]);
+          setSavedFilms(data[1]);
         })
         .catch((err) => console.log(err));
     }
@@ -76,9 +89,9 @@ function App() {
 
   React.useEffect(() => {
     if (isChecked) {
-      handleSubmitSearchMovies();;
+      handleSubmitSearchMovies();
     }
-    if (!isChecked){
+    if (!isChecked) {
       handleSubmitSearchMovies();
     }
   }, [isChecked]);
@@ -180,15 +193,13 @@ function App() {
 
   //получение  фильмов по ключевым словам
   function handleSubmitSearchMovies() {
-    
-    if (value === "") { 
-  return;
+    if (value === "") {
+      return;
     }
-    
+    setIsLoadind(true);
     moviesApi
       .getMovies()
       .then((data) => {
-        console.log(data);
         const compilation = [];
         data.map((item) => {
           item.nameRU.toLowerCase().includes(value.toLowerCase()) ||
@@ -196,17 +207,24 @@ function App() {
             ? compilation.push(item)
             : console.log("");
         });
-        
+
         if (isChecked) {
           handleCheckbox(compilation);
           setFilms(shortFilms);
         } else {
           setFilms(compilation);
         }
-        
+
+        if (films.length < 1 ) {
+          setIsCheckedButton(true);
+        }
         
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoadind(false);
+        setIsCheckedButton(false);
+      });
   }
 
   //функция для фильтрации с помощью чекбокса
@@ -230,6 +248,33 @@ function App() {
   function handleValue(evt) {
     setValue(evt.target.value);
   }
+
+  //функция при клике по кнопке "Cохранить" на фильме
+  function ClickButtonSavedFilms(movie) {
+    if (isSaved === false) {
+      api.addFilm(movie).then((data) => {
+        setSavedFilms(data);
+        setIsSaved(true);
+      });
+    } else {
+      api.deleteCard(movie._id).then((data) => {
+        console.log(data);
+      });
+    }
+  }
+
+  //функция удаления фильма из сохраненных фильмов на роуте /saved-movies
+  function handleDeleteFilm(movie) {
+    api.deleteCard(movie._id).then((data) => {
+      console.log("удалено");
+      console.log(data);
+      // setSavedFilms(savedFilms.filter(obj => obj.id != movie._id));
+      const newCards = savedFilms.filter((c) => c._id !== movie._id);
+      setSavedFilms(newCards);
+    });
+
+  }
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -256,9 +301,12 @@ function App() {
                       onClick={handleSubmitSearchMovies}
                       films={films}
                       handleValue={handleValue}
-                     // onClickCheckbox={handleCheckbox}
+                      // onClickCheckbox={handleCheckbox}
                       isChecked={isChecked}
                       onChange={isValidCheckbox}
+                      isLoading={isLoading}
+                      ClickButtonSavedFilms={ClickButtonSavedFilms}
+                      isCheckedButton={isCheckedButton}
                     />
                   }
                 />
@@ -277,7 +325,16 @@ function App() {
                   element={<Login onRegister={handleSubmitLogin} err={err} />}
                 />
                 <Route path="*" element={<NotFound />} />
-                <Route path="/saved-movies" element={<SavedMovies />} />
+                <Route
+                  path="/saved-movies"
+                  element={
+                    <SavedMovies
+                      films={savedFilms}
+                      isLoading={isLoading}
+                      ClickButtonSavedFilms={handleDeleteFilm}
+                    />
+                  }
+                />
                 <Route
                   path="/profile"
                   element={

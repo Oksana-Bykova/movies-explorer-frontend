@@ -8,7 +8,7 @@
   border-radius: 6px;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 888px) {
   .movies-card {
     max-width: 342px;
   }
@@ -28,7 +28,7 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 888px) {
   .movies-card__container {
     max-width: 342px;
   }
@@ -123,4 +123,8 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 11px;
+}
+
+.movies-card__link {
+  width: 100%;
 }

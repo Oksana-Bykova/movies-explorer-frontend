@@ -14,9 +14,12 @@ function Movies(props) {
         onChange={props.onChange}
       ></SearchForm>
       <MoviesCardList
-        button="movies-card-list__button"
+        //button="movies-card-list__button"
         buttonclass="movies-card__button"
         films={props.films}
+        isLoading ={ props.isLoading}
+        ClickButtonSavedFilms={props.ClickButtonSavedFilms}
+        isCheckedButton={props.isCheckedButton}
       >
         {" "}
       </MoviesCardList>

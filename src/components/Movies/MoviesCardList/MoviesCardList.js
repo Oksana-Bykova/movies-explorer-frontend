@@ -3,32 +3,63 @@ import { MoviesCard } from "../MoviesCard/MoviesCard";
 //import { Cards }  from "../../../utils/constants";
 import "./MoviesCardList.css";
 import { useLocation } from "react-router-dom";
+import Preloader from "../Preloader/Preloader";
+import { CountMovies } from "../../../utils/СountMovies.js";
 
 function MoviesCardList(props) {
-
-//const Cards = moviesApi
-//.getMovies
-//.then((data)=> console.log(data))
-
   let { pathname } = useLocation();
+
+  const { countMovies, addMoreMovies } = CountMovies();
+
   return (
     <section className="movies-card-list">
-      <ul  className={`${
-        pathname === "/saved-movies"? "movies-card-list__ul-smovies" : "movies-card-list__ul"
-      } `}>
-        {props.films.map((item) => (
-          <MoviesCard key={item._id} card={item} hendler={props.hendler} button="Сохранить" buttonclass = {props.buttonclass}/>
-        ))}
-      </ul>
-      <button className={props.button} type="button">Еще</button>
+      {props.isLoading ? (
+        <Preloader />
+      ) : props.isCheckedButton && props.films.length === 0 ? (
+        <h3 className="movies-card-list__error">Ничего не найдено :( </h3>
+      ) : (
+        <>
+          <ul
+            className={`${
+              pathname === "/saved-movies"
+                ? "movies-card-list__ul-smovies"
+                : "movies-card-list__ul"
+            } `}
+          >
+            {props.films.slice(0, countMovies).map((item) => (
+              <MoviesCard
+                key={`${pathname === "/saved-movies" ? item._id : item.id}`}
+                // {item.id}
+                card={item}
+                hendler={props.hendler}
+                button="Сохранить"
+                buttonclass={props.buttonclass}
+                ClickButtonSavedFilms={props.ClickButtonSavedFilms}
+              />
+            ))}
+          </ul>
+
+          {props.films.length > countMovies ? (
+            <button
+              className="movies-card-list__button"
+              type="button"
+              onClick={addMoreMovies}
+            >
+              Еще
+            </button>
+          ) : (
+            <button
+              className="movies-card-list__button-fof-saved-movies"
+              type="button"
+              onClick={addMoreMovies}
+            >
+              Еще
+            </button>
+          )}
+        </>
+      )}
     </section>
   );
 }
 
 export { MoviesCardList };
-
-
-
-
-     
-   

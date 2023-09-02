@@ -9,7 +9,7 @@ function FilterCheckbox(props) {
           className="filter-checkbox__input"
           id="button"
           onClick={props.onClick}
-          
+          //isChecked = {props.isChecked}
           onChange={props.onChange}
         ></input>
         <span className="filter-checkbox__visible-checkbox" checked = {props.isChecked}></span>

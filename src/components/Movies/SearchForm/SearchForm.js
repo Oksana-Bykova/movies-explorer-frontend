@@ -12,7 +12,7 @@ function SearchForm(props) {
   function handleError(evt) {
        setError(evt.target.validationMessage);
        setFilm(evt.target.value);
-      props.handleValue(evt);
+       props.handleValue(evt);
   }
 
   function onClick(evt) {
@@ -22,6 +22,7 @@ function SearchForm(props) {
       return;
     }
     props.onClick();
+    
   }
 
   return (
@@ -42,7 +43,7 @@ function SearchForm(props) {
             ></input>
             <span className="search-form__span">{error  || ""}</span>
           </div>
-          <button className="search-form__button" type="submit">
+          <button className="search-form__button" type="submit" >
             Поиск
           </button>
         </div>
