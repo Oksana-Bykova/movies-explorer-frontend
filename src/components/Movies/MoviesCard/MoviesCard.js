@@ -48,7 +48,7 @@ function handleDuration(time) {
        // src={`https://api.nomoreparties.co/${props.card.image.url}`}
       />
       </a>
-      <button className={props.buttonclass} type="button" onClick={ClickButton}>{props.button}</button>
+      <button className={props.buttonclass} type="button" onClick={ClickButton} isSaved={props.isSaved}>{props.button}</button>
     </li>
   );
 }

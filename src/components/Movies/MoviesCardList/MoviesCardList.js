@@ -35,6 +35,8 @@ function MoviesCardList(props) {
                 button="Сохранить"
                 buttonclass={props.buttonclass}
                 ClickButtonSavedFilms={props.ClickButtonSavedFilms}
+                isSaved = {props.isSaved}
+
               />
             ))}
           </ul>

@@ -20,6 +20,7 @@ function Movies(props) {
         isLoading ={ props.isLoading}
         ClickButtonSavedFilms={props.ClickButtonSavedFilms}
         isCheckedButton={props.isCheckedButton}
+        isSaved = {props.isSaved}
       >
         {" "}
       </MoviesCardList>

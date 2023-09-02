@@ -81,7 +81,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [loggedIn]);
+  }, [loggedIn, savedFilms]);
 
   React.useEffect(() => {
     tokenCheck();
@@ -251,6 +251,7 @@ function App() {
 
   //функция при клике по кнопке "Cохранить" на фильме
   function ClickButtonSavedFilms(movie) {
+    console.log(movie);
     if (isSaved === false) {
       api.addFilm(movie).then((data) => {
         setSavedFilms(data);
@@ -307,6 +308,7 @@ function App() {
                       isLoading={isLoading}
                       ClickButtonSavedFilms={ClickButtonSavedFilms}
                       isCheckedButton={isCheckedButton}
+                      isSaved = {isSaved}  
                     />
                   }
                 />
