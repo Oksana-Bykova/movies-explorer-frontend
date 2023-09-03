@@ -44,8 +44,6 @@ function handleDuration(time) {
                 ? props.card.image
                 : (`https://api.nomoreparties.co/${props.card.image.url}`)
             } `}
-
-       // src={`https://api.nomoreparties.co/${props.card.image.url}`}
       />
       </a>
       <button className={props.buttonclass} type="button" onClick={ClickButton} >{props.button}</button>

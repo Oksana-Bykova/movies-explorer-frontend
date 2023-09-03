@@ -15,8 +15,8 @@ function MoviesCardList(props) {
     <section className="movies-card-list">
       {props.isLoading ? (
         <Preloader />
-      ) : props.isCheckedButton && props.films.length === 0 ? (
-        <h3 className="movies-card-list__error">Ничего не найдено :( </h3>
+      ) :  props.films.length === 0 ? (
+        <h3 className="movies-card-list__error">{props.text} </h3>
       ) : (
         <>
           <ul

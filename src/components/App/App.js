@@ -84,6 +84,10 @@ function App() {
     tokenCheck();
   }, []);
 
+  React.useEffect(() => {
+    handleSubmitSearchMovies();
+  }, [query.isChecked]);
+
   //функция открытия попапа
   function handleOpenPopup() {
     setIsPopupOpen(true);
@@ -179,7 +183,7 @@ function App() {
   }
 
   //получение  фильмов по ключевым словам
-  function handleSubmitSearchMovies(query) {
+  function handleSubmitSearchMovies() {
     console.log(query);
     if (query.string === "") {
       return;
@@ -189,7 +193,6 @@ function App() {
     moviesApi
       .getMovies()
       .then((data) => {
-
         const filtredMovies = FiltredMovies(data, query);
 
         if (filtredMovies < 1) {
@@ -209,10 +212,10 @@ function App() {
     if (query.string === "") {
       return;
     }
-   const isChecked = evt.target.checked;
-
+    const isChecked = evt.target.checked;
+    console.log(isChecked);
     setQuery((q) => ({ ...q, isChecked: isChecked }));
-    handleSubmitSearchMovies();
+    //handleSubmitSearchMovies();
   }
 
   // собираем данные с формы поиска фильмов
@@ -289,6 +292,7 @@ function App() {
                       onChange={isValidCheckbox}
                       isLoading={isLoading}
                       ClickButtonSavedFilms={ClickButtonSavedFilms}
+                      text = {searchText.text}
                     />
                   }
                 />

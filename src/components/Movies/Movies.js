@@ -9,7 +9,6 @@ function Movies(props) {
       <SearchForm
         onClick={props.onClick}
         handleValue={props.handleValue}
-        onClickCheckbox={props.onClickCheckbox}
         isChecked={props.isChecked}
         onChange={props.onChange}
         searchString={props.searchString}
@@ -19,6 +18,7 @@ function Movies(props) {
         films={props.films}
         isLoading ={ props.isLoading}
         ClickButtonSavedFilms={props.ClickButtonSavedFilms}
+        text = {props.text}
       >
         {" "}
       </MoviesCardList>

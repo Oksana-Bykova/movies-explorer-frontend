@@ -46,7 +46,6 @@ function SearchForm(props) {
           </button>
         </div>
         <FilterCheckbox
-          onClick={props.onClickCheckbox}
           isChecked={props.isChecked}
           onChange={props.onChange}
         ></FilterCheckbox>
