@@ -11,8 +11,9 @@ function FilterCheckbox(props) {
           onClick={props.onClick}
           //isChecked = {props.isChecked}
           onChange={props.onChange}
+          checked = {props.isChecked}
         ></input>
-        <span className="filter-checkbox__visible-checkbox" checked = {props.isChecked}></span>
+        <span className="filter-checkbox__visible-checkbox" ></span>
         <span className="filter-checkbox__text">Короткометражки</span>
       </label>
   

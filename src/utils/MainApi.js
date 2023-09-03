@@ -3,22 +3,22 @@ class Api {
     this.baseUrl = baseUrl;
   }
 
-  _checkResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  }
+ // _checkResponse(res) {
+ //   if (res.ok) {
+ //     return res.json();
+ //   }
+ //   return Promise.reject(`Ошибка: ${res.status}`);
+ // }
 
-  // _checkResponse(res) {
-  //  if (res.ok) {
-  //   return res.json();
-  // }
-  // return res.text().then((text) => {
-  //   throw JSON.parse(text).message || JSON.parse(text).error;
-  //
-  // });
-  //}
+   _checkResponse(res) {
+    if (res.ok) {
+     return res.json();
+   }
+   return res.text().then((text) => {
+     throw JSON.parse(text).message || JSON.parse(text).error;
+  
+   });
+  }
 
   getInitialFilms() {
     return fetch(`${this.baseUrl}/movies`, {

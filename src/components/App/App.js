@@ -22,6 +22,7 @@ import { api } from "../../utils/MainApi.js";
 import { PopupWithSubmit } from "../PopupSubmit/PopupSubmit.js";
 import { moviesApi } from "../../utils/MoviesApi.js";
 //import Preloader from "../Movies/Preloader/Preloader.js";
+import { FiltredMovies } from "../../utils/FiltredMovies.js";
 
 import "./App.css";
 
@@ -51,26 +52,22 @@ function App() {
   //стейт для хранения найденных фильмов
   const [films, setFilms] = React.useState([]);
 
-  //стейт для хранения данных с формы поиска фильмов
-  const [value, setValue] = React.useState("");
-
-  //стейт для хранения фильмов отфильтрованных чекбоксом
-  const [shortFilms, setShortFilms] = React.useState([]);
-
-  //стейт для хранения состояния чекбокса - активен или нет
-  const [isChecked, setIsChecked] = React.useState(false);
-
   //стейт для хранения  значения для прелодера
   const [isLoading, setIsLoadind] = React.useState(false);
 
   //стейт для хранения сохраненных фильмов
   const [savedFilms, setSavedFilms] = React.useState([]);
 
-  //стейт для хранения состояния кнопки "сохранить" под фильмом
-  const [isSaved, setIsSaved] = React.useState(false);
+  //стейт для хранения данных поискового запроса
+  const [query, setQuery] = React.useState({
+    string: "",
+    isChecked: false,
+  });
 
-  //стейт для хранения состояния кнопки "Поиск" - была ли нажата
-  const [isCheckedButton, setIsCheckedButton] = React.useState(false);
+  //стейт для хранения текста на страницах /movies /save-movies - показываем под формой
+  const [searchText, setSearchText] = React.useState({
+    text: "Введите ключевые слова для поиска",
+  });
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -81,20 +78,11 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [loggedIn, savedFilms]);
+  }, [loggedIn]);
 
   React.useEffect(() => {
     tokenCheck();
   }, []);
-
-  React.useEffect(() => {
-    if (isChecked) {
-      handleSubmitSearchMovies();
-    }
-    if (!isChecked) {
-      handleSubmitSearchMovies();
-    }
-  }, [isChecked]);
 
   //функция открытия попапа
   function handleOpenPopup() {
@@ -121,6 +109,7 @@ function App() {
         .catch((err) => console.log(err));
     }
   }
+
   //сабмит формы регистрации
   function handleSubmitRegister(email, password, name) {
     auth
@@ -133,9 +122,7 @@ function App() {
       })
       .catch((err) => {
         setSuccses(false);
-        if (err.includes("409")) {
-          setErr("Пользователь с таким email уже существует");
-        }
+        setErr(err);
       });
   }
 
@@ -192,60 +179,46 @@ function App() {
   }
 
   //получение  фильмов по ключевым словам
-  function handleSubmitSearchMovies() {
-    if (value === "") {
+  function handleSubmitSearchMovies(query) {
+    console.log(query);
+    if (query.string === "") {
       return;
     }
     setIsLoadind(true);
+
     moviesApi
       .getMovies()
       .then((data) => {
-        const compilation = [];
-        data.map((item) => {
-          item.nameRU.toLowerCase().includes(value.toLowerCase()) ||
-          item.nameEN.toLowerCase().includes(value.toLowerCase())
-            ? compilation.push(item)
-            : console.log("");
-        });
 
-        if (isChecked) {
-          handleCheckbox(compilation);
-          setFilms(shortFilms);
-        } else {
-          setFilms(compilation);
+        const filtredMovies = FiltredMovies(data, query);
+
+        if (filtredMovies < 1) {
+          setSearchText({ text: "Ничего не найдено" });
         }
 
-        if (films.length < 1) {
-          setIsCheckedButton(true);
-        }
+        setFilms(filtredMovies);
       })
       .catch((err) => console.log(err))
       .finally(() => {
         setIsLoadind(false);
-        setIsCheckedButton(false);
       });
-  }
-
-  //функция для фильтрации с помощью чекбокса
-  function handleCheckbox(data) {
-    const ShortFilms = [];
-    data.map((item) => {
-      item.duration < 40
-        ? ShortFilms.push(item)
-        : console.log("не короткометражка");
-    });
-    setShortFilms(ShortFilms);
   }
 
   // функция записывает состояние чекбокса в стейт
   function isValidCheckbox(evt) {
-    setIsChecked(evt.target.checked);
-    console.log(isChecked);
+    if (query.string === "") {
+      return;
+    }
+   const isChecked = evt.target.checked;
+
+    setQuery((q) => ({ ...q, isChecked: isChecked }));
+    handleSubmitSearchMovies();
   }
 
-  //собираем данные с формы поиска фильмов
+  // собираем данные с формы поиска фильмов
   function handleValue(evt) {
-    setValue(evt.target.value);
+    const string = evt.target.value;
+    setQuery((q) => ({ ...q, string: string }));
   }
 
   //функция при клике по кнопке "Cохранить" на фильме
@@ -311,13 +284,11 @@ function App() {
                       onClick={handleSubmitSearchMovies}
                       films={films}
                       handleValue={handleValue}
-                      // onClickCheckbox={handleCheckbox}
-                      isChecked={isChecked}
+                      isChecked={query.isChecked}
+                      searchString={query.string}
                       onChange={isValidCheckbox}
                       isLoading={isLoading}
                       ClickButtonSavedFilms={ClickButtonSavedFilms}
-                      isCheckedButton={isCheckedButton}
-                      isSaved={isSaved}
                     />
                   }
                 />

@@ -29,13 +29,11 @@ function MoviesCardList(props) {
             {props.films.slice(0, countMovies).map((item) => (
               <MoviesCard
                 key={`${pathname === "/saved-movies" ? item._id : item.id}`}
-                // {item.id}
                 card={item}
                 hendler={props.hendler}
                 button="Сохранить"
                 buttonclass={props.buttonclass}
                 ClickButtonSavedFilms={props.ClickButtonSavedFilms}
-                isSaved = {props.isSaved}
 
               />
             ))}

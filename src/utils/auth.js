@@ -6,13 +6,10 @@ function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
+  return res.text().then((text) => {
+    throw JSON.parse(text).message || JSON.parse(text).error;
 
- //Promise.reject( res.json().then((res) => {
-  //const message = res.message;
- // return (message);
- //} )) 
- 
+  });
 }
 
 export const register = (email, password, name) => {

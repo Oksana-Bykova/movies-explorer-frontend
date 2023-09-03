@@ -1,10 +1,10 @@
 import React from "react";
-import { Form } from "../Form/Form";
+//import { Form } from "../Form/Form";
 import "./Register.css";
 import {useFormWithValidation} from "../../utils/Validation";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import { NAME__PATTERN , EMAIL_PATTERN } from "../../utils/constants";
+//import { NAME__PATTERN , EMAIL_PATTERN } from "../../utils/constants";
 import "../Form/Form.css";
 
 function Register(props) {
