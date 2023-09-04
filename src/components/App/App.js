@@ -75,6 +75,7 @@ function App() {
         .then((data) => {
           setCurrentUser(data[0]);
           setSavedFilms(data[1]);
+          console.log(savedFilms);
         })
         .catch((err) => console.log(err));
     }
@@ -101,13 +102,12 @@ function App() {
   //сохраняем токен
   function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
-    console.log(jwt);
+    //console.log(jwt);
     if (jwt) {
       auth
         .getContent(jwt)
         .then((data) => {
           handleloggedIn(data);
-          console.log(data);
           //navigate('/', {replace: true});
         })
         .catch((err) => console.log(err));
@@ -184,7 +184,6 @@ function App() {
 
   //получение  фильмов по ключевым словам
   function handleSubmitSearchMovies() {
-    console.log(query);
     if (query.string === "") {
       return;
     }
@@ -213,42 +212,27 @@ function App() {
       return;
     }
     const isChecked = evt.target.checked;
-    console.log(isChecked);
     setQuery((q) => ({ ...q, isChecked: isChecked }));
     //handleSubmitSearchMovies();
+    console.log(savedFilms);
   }
 
   // собираем данные с формы поиска фильмов
   function handleValue(evt) {
     const string = evt.target.value;
     setQuery((q) => ({ ...q, string: string }));
+    localStorage.setItem ("searchStrind" , query.string);
+    console.log(localStorage.getItem("searchStrind"))
   }
 
-  //функция при клике по кнопке "Cохранить" на фильме
+  //функция для добавления фильма в сохраненные фильмы
   function ClickButtonSavedFilms(movie) {
     console.log(movie);
-    // if (isSaved === false) {
-    //   api.addFilm(movie).then((data) => {
-    //     setSavedFilms(data);
-    //     setIsSaved(true);
-    //   });
-    // } else {
-    //   api.deleteCard(movie._id).then((data) => {
-    //     console.log(data);
-    //   });
-    // }
-    console.log(savedFilms);
-    savedFilms.map((item) => {
-      console.log(item.nameRU.toLowerCase());
-      console.log(movie.nameRU.toLowerCase());
-      item.nameRU.toLowerCase().includes(movie.nameRU.toLowerCase())
-        ? api.addFilm(movie).then((data) => {
-            setSavedFilms(data);
-          })
-        : api.deleteCard(movie._id).then((data) => {
-            console.log("фидьм удален");
-          });
-    });
+       api.addFilm(movie).then((data) => {
+         setSavedFilms([...savedFilms, data]);
+         console.log(savedFilms);
+  })
+  
   }
 
   //функция удаления фильма из сохраненных фильмов на роуте /saved-movies
@@ -256,7 +240,6 @@ function App() {
     api.deleteCard(movie._id).then((data) => {
       console.log("удалено");
       console.log(data);
-      // setSavedFilms(savedFilms.filter(obj => obj.id != movie._id));
       const newCards = savedFilms.filter((c) => c._id !== movie._id);
       setSavedFilms(newCards);
     });
@@ -293,6 +276,8 @@ function App() {
                       isLoading={isLoading}
                       ClickButtonSavedFilms={ClickButtonSavedFilms}
                       text = {searchText.text}
+                      savedFilms ={ savedFilms }
+                      ClickButtonDelete = {handleDeleteFilm}
                     />
                   }
                 />
@@ -317,7 +302,8 @@ function App() {
                     <SavedMovies
                       films={savedFilms}
                       isLoading={isLoading}
-                      ClickButtonSavedFilms={handleDeleteFilm}
+                      ClickButtonDelete  = {handleDeleteFilm}
+                     savedFilms= {savedFilms}
                     />
                   }
                 />

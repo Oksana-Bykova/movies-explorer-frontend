@@ -11,6 +11,28 @@ function MoviesCardList(props) {
 
   const { countMovies, addMoreMovies } = CountMovies();
 
+ // const isSaved = ( movie) => {
+    
+  // if (props.savedFilms.length === 0 ) {
+  //    console.log("нет сохраненых фильмов")
+  //    return;
+ //  }
+ //  return props.savedFilms.reduce((acc, item) => {
+ //   console.log(item.movieId);
+ //   console.log(movie.id);
+ //     if (item.movieId == movie.id) { 
+  //      movie._id = item._id;
+  //      return true
+ //     } else {
+  //      return false;
+  //    }
+ //   },false);
+ 
+ // }
+  function isSaved (movie) {
+    return props.savedFilms.some((f) => f.movieId === movie.id);
+  }
+
   return (
     <section className="movies-card-list">
       {props.isLoading ? (
@@ -30,11 +52,11 @@ function MoviesCardList(props) {
               <MoviesCard
                 key={`${pathname === "/saved-movies" ? item._id : item.id}`}
                 card={item}
-                hendler={props.hendler}
                 button="Сохранить"
-                buttonclass={props.buttonclass}
                 ClickButtonSavedFilms={props.ClickButtonSavedFilms}
-
+                ClickButtonDelete = {props.ClickButtonDelete}
+                isSaved = {isSaved(item)}
+                
               />
             ))}
           </ul>

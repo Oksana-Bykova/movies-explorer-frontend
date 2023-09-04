@@ -9,11 +9,10 @@ function SavedMovies(props) {
       <section className="saved-movies">
         <SearchForm></SearchForm>
         <MoviesCardList
-         // button="movies-card-list__button-fof-saved-movies"
-          buttonclass="movies-card__button-saved-movies"
           films={props.films}
           isLoading ={ props.isLoading}
-          ClickButtonSavedFilms={props.ClickButtonSavedFilms}
+          ClickButtonDelete= {props.ClickButtonDelete}
+          savedFilms = {props.savedFilms}
         ></MoviesCardList>
       </section>
     </main>

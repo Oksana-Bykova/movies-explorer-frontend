@@ -105,6 +105,17 @@
 }
 
 .movies-card__button_active {
+  border-radius: 30px;
+  background-color: #313131;
+  width: 100px;
+  height: 29px;
+  border: 0;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 11px; /* 91.667% */
   color: transparent;
   background-image: url(../../../images/ok.svg);
 }

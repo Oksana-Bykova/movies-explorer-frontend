@@ -14,11 +14,12 @@ function Movies(props) {
         searchString={props.searchString}
       ></SearchForm>
       <MoviesCardList
-        buttonclass="movies-card__button"
         films={props.films}
         isLoading ={ props.isLoading}
         ClickButtonSavedFilms={props.ClickButtonSavedFilms}
         text = {props.text}
+        savedFilms = {props.savedFilms}
+        ClickButtonDelete = {props.ClickButtonDelete}
       >
         {" "}
       </MoviesCardList>
