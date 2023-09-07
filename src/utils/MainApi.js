@@ -85,7 +85,7 @@ class Api {
 
 //***********************************************************************создаем экземпляр класса Api
 const api = new Api({
-   baseUrl: "api.oksana.bikova.movies.nomoredomains.xyz",
+   baseUrl: "https://api.oksana.bikova.movies.nomoredomains.xyz",
  // baseUrl: "http://localhost:3000",
 });
 export { api };

@@ -1,4 +1,4 @@
- export const BASE_URL = 'api.oksana.bikova.movies.nomoredomains.xyz';
+ export const BASE_URL = 'https://api.oksana.bikova.movies.nomoredomains.xyz';
 //export const BASE_URL = 'http://localhost:3000';
 
 
