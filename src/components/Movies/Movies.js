@@ -3,7 +3,6 @@ import { SearchForm } from "../Movies/SearchForm/SearchForm";
 import { MoviesCardList } from "../Movies/MoviesCardList/MoviesCardList";
 
 function Movies(props) {
-
   return (
     <main>
       <SearchForm
@@ -15,11 +14,11 @@ function Movies(props) {
       ></SearchForm>
       <MoviesCardList
         films={props.films}
-        isLoading ={ props.isLoading}
+        isLoading={props.isLoading}
         ClickButtonSavedFilms={props.ClickButtonSavedFilms}
-        text = {props.text}
-        savedFilms = {props.savedFilms}
-        ClickButtonDelete = {props.ClickButtonDelete}
+        text={props.text}
+        savedFilms={props.savedFilms}
+        ClickButtonDelete={props.ClickButtonDelete}
       >
         {" "}
       </MoviesCardList>

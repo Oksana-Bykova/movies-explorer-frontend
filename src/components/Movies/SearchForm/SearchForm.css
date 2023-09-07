@@ -58,6 +58,14 @@
   border: 0;
 }
 
+.search-form__container:focus-within {
+  border: 1px solid #FF004D;
+}
+
+.search-form__input:focus{
+  outline: 0 solid #FF004D;
+}
+
 @media screen and (max-width: 400px) {
   .search-form__input {
     max-width: 180px;

@@ -4,12 +4,12 @@ import { MoviesCard } from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
 import { useLocation } from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
-import { CountMovies } from "../../../utils/СountMovies.js";
+import { useCountMovies } from "../../../utils/useСountMovies.js";
 
 function MoviesCardList(props) {
   let { pathname } = useLocation();
 
-  const { countMovies, addMoreMovies } = CountMovies();
+  const { countMovies, addMoreMovies } = useCountMovies();
 
  // const isSaved = ( movie) => {
     

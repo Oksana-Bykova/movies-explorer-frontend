@@ -2,27 +2,24 @@ import React from "react";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import line from "../../../images/text__COLOR_stroke-landing.svg";
 import "./SearchForm.css";
-//import { useFormWithValidation } from "../../../utils/Validation";
 
 function SearchForm(props) {
-  // const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   const [error, setError] = React.useState("");
   const [film, setFilm] = React.useState("");
 
   function handleError(evt) {
-       setError(evt.target.validationMessage);
-       setFilm(evt.target.value);
-       props.handleValue(evt);
+    setError(evt.target.validationMessage);
+    setFilm(evt.target.value);
+    props.handleValue(evt);
   }
 
   function onClick(evt) {
     evt.preventDefault();
-    if (film === ""){
-      setError("Нужно ввести ключевое слово"); 
+    if (film === "") {
+      setError("Нужно ввести ключевое слово");
       return;
     }
     props.onClick();
-    
   }
 
   return (
@@ -39,9 +36,9 @@ function SearchForm(props) {
               onChange={handleError}
               minLength={1}
             ></input>
-            <span className="search-form__span">{error  || ""}</span>
+            <span className="search-form__span">{error || ""}</span>
           </div>
-          <button className="search-form__button" type="submit" >
+          <button className="search-form__button" type="submit">
             Поиск
           </button>
         </div>

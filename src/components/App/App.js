@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import { Main } from "../Main/Main.js";
 import { Movies } from "../Movies/Movies.js";
@@ -21,8 +15,8 @@ import { CurrentUserContext } from "../../context/CurrentUserContext.js";
 import { api } from "../../utils/MainApi.js";
 import { PopupWithSubmit } from "../PopupSubmit/PopupSubmit.js";
 import { moviesApi } from "../../utils/MoviesApi.js";
-//import Preloader from "../Movies/Preloader/Preloader.js";
 import { FiltredMovies } from "../../utils/FiltredMovies.js";
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute.js";
 
 import "./App.css";
 
@@ -30,9 +24,6 @@ function App() {
   let { pathname } = useLocation();
 
   const navigate = useNavigate();
-
-  //успешная или неуспешная регистрация
-  const [succses, setSuccses] = React.useState(false);
 
   //стейт для определения вошел пользователь в ситсему или нет
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -69,13 +60,18 @@ function App() {
     text: "Введите ключевые слова для поиска",
   });
 
+  // стейт для хранения поискового запроса со страницы сохраненных фильмов
+  const [querySavedFilms, setQuerySavedFilms] = React.useState({
+    string: "",
+    isChecked: false,
+  });
+
   React.useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getProfileInformation(), api.getInitialFilms()])
         .then((data) => {
           setCurrentUser(data[0]);
           setSavedFilms(data[1]);
-          console.log(savedFilms);
         })
         .catch((err) => console.log(err));
     }
@@ -89,6 +85,33 @@ function App() {
     handleSubmitSearchMovies();
   }, [query.isChecked]);
 
+  React.useEffect(() => {
+    handleSubmitSearchSavedMovies();
+  }, [querySavedFilms.isChecked]);
+
+  React.useEffect(() => {
+    const searchString = localStorage.getItem("searchString");
+    const isChecked = localStorage.getItem("isChecked");
+    //console.log(isChecked);
+
+    const localStorageArray = JSON.parse(
+      localStorage.getItem("movieFromRequest")
+    );
+
+    if (searchString) {
+      setQuery((q) => ({ ...q, string: searchString }));
+    }
+
+    if (isChecked === true) {
+      setQuery((q) => ({ ...q, isChecked: isChecked }));
+    }
+
+    if (localStorageArray) {
+      setFilms(localStorageArray);
+    }
+  }, []);
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //функция открытия попапа
   function handleOpenPopup() {
     setIsPopupOpen(true);
@@ -99,16 +122,15 @@ function App() {
     setIsPopupOpen(false);
   }
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //сохраняем токен
   function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
-    //console.log(jwt);
     if (jwt) {
       auth
         .getContent(jwt)
         .then((data) => {
           handleloggedIn(data);
-          //navigate('/', {replace: true});
         })
         .catch((err) => console.log(err));
     }
@@ -119,13 +141,13 @@ function App() {
     auth
       .register(email, password, name)
       .then((res) => {
-        setSuccses(true);
         setErr("");
+        setMessagePopup("Вы успешно зарегистрировались");
+        handleOpenPopup();
         handleSubmitLogin(email, password);
         navigate("/movies", { replace: true });
       })
       .catch((err) => {
-        setSuccses(false);
         setErr(err);
       });
   }
@@ -143,6 +165,7 @@ function App() {
         if (data.jwt) {
           localStorage.setItem("jwt", data.jwt);
           handleloggedIn();
+          localStorage.setItem("loggedInLocalStorage", true);
           setErr("");
           navigate("/movies", { replace: true });
         }
@@ -163,11 +186,18 @@ function App() {
   function onOut() {
     setLoggedIn(false);
     localStorage.removeItem("jwt");
-    console.log("вы вышли из профиля");
+    localStorage.removeItem("movieFromRequest");
+    localStorage.removeItem("searchString");
+    localStorage.removeItem("isChecked");
+    localStorage.removeItem("loggedInLocalStorage");
+    setQuery({ string: "", isChecked: false });
+    setSearchText({ text: "Введите ключевые слова для поиска" });
+    setFilms([]);
     setMessagePopup("Вы вышли из профиля");
     handleOpenPopup();
   }
 
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //обработка формы редактирования профиля
   function handleUpdateUser(data) {
     console.log(data);
@@ -181,7 +211,7 @@ function App() {
 
       .catch((err) => console.log(err));
   }
-
+  // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //получение  фильмов по ключевым словам
   function handleSubmitSearchMovies() {
     if (query.string === "") {
@@ -199,6 +229,9 @@ function App() {
         }
 
         setFilms(filtredMovies);
+        localStorage.setItem("searchString", query.string);
+        localStorage.setItem("isChecked", query.isChecked);
+        localStorage.setItem("movieFromRequest", JSON.stringify(filtredMovies));
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -213,26 +246,51 @@ function App() {
     }
     const isChecked = evt.target.checked;
     setQuery((q) => ({ ...q, isChecked: isChecked }));
-    //handleSubmitSearchMovies();
-    console.log(savedFilms);
   }
 
   // собираем данные с формы поиска фильмов
   function handleValue(evt) {
     const string = evt.target.value;
     setQuery((q) => ({ ...q, string: string }));
-    localStorage.setItem ("searchStrind" , query.string);
-    console.log(localStorage.getItem("searchStrind"))
   }
+
+  // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //функция поиска по сохраненым фильмам - сабмит формы
+  function handleSubmitSearchSavedMovies() {
+    const filtredMovies = FiltredMovies(savedFilms, querySavedFilms);
+
+    if (filtredMovies < 1) {
+      setSearchText({ text: "Ничего не найдено" });
+    }
+
+    setSavedFilms(filtredMovies);
+  }
+
+  // функция записывает состояние чекбокса на странице сохраненных фильмов в стейт
+  function isValidCheckboxSavedFilms(evt) {
+    if (querySavedFilms.string === "") {
+      return;
+    }
+    const isChecked = evt.target.checked;
+    setQuerySavedFilms((q) => ({ ...q, isChecked: isChecked }));
+  }
+
+  // собираем данные с формы поиска сохраненных фильмов фильмов
+  function handleValueSavedFilms(evt) {
+    const string = evt.target.value;
+    setQuerySavedFilms((q) => ({ ...q, string: string }));
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //функция для добавления фильма в сохраненные фильмы
   function ClickButtonSavedFilms(movie) {
     console.log(movie);
-       api.addFilm(movie).then((data) => {
-         setSavedFilms([...savedFilms, data]);
-         console.log(savedFilms);
-  })
-  
+    api.addFilm(movie).then((data) => {
+      setSavedFilms([...savedFilms, data]);
+      console.log(savedFilms);
+    });
   }
 
   //функция удаления фильма из сохраненных фильмов на роуте /saved-movies
@@ -266,7 +324,9 @@ function App() {
                 <Route
                   path="/movies"
                   element={
-                    <Movies
+                    <ProtectedRouteElement
+                      element={Movies}
+                      //loggedIn={loggedIn}
                       onClick={handleSubmitSearchMovies}
                       films={films}
                       handleValue={handleValue}
@@ -275,9 +335,9 @@ function App() {
                       onChange={isValidCheckbox}
                       isLoading={isLoading}
                       ClickButtonSavedFilms={ClickButtonSavedFilms}
-                      text = {searchText.text}
-                      savedFilms ={ savedFilms }
-                      ClickButtonDelete = {handleDeleteFilm}
+                      text={searchText.text}
+                      savedFilms={savedFilms}
+                      ClickButtonDelete={handleDeleteFilm}
                     />
                   }
                 />
@@ -299,18 +359,26 @@ function App() {
                 <Route
                   path="/saved-movies"
                   element={
-                    <SavedMovies
+                    <ProtectedRouteElement
+                      element={SavedMovies}
+                      //loggedIn={loggedIn}
                       films={savedFilms}
                       isLoading={isLoading}
-                      ClickButtonDelete  = {handleDeleteFilm}
-                     savedFilms= {savedFilms}
+                      ClickButtonDelete={handleDeleteFilm}
+                      savedFilms={savedFilms}
+                      onClick={handleSubmitSearchSavedMovies}
+                      handleValue={handleValueSavedFilms}
+                      isChecked={querySavedFilms.isChecked}
+                      onChange={isValidCheckboxSavedFilms}
                     />
                   }
                 />
                 <Route
                   path="/profile"
                   element={
-                    <Profile
+                    <ProtectedRouteElement
+                      element={Profile}
+                      //loggedIn={loggedIn}
                       onOut={onOut}
                       handleUpdateUser={handleUpdateUser}
                     />

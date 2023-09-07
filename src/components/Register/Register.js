@@ -4,7 +4,6 @@ import "./Register.css";
 import {useFormWithValidation} from "../../utils/Validation";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
-//import { NAME__PATTERN , EMAIL_PATTERN } from "../../utils/constants";
 import "../Form/Form.css";
 
 function Register(props) {
@@ -65,7 +64,6 @@ function Register(props) {
               required
               onChange={handleChange}
               value={name  || ""}
-              pattern={NAME__PATTERN}
             />
             <span className="form__error">{errors.name || "" }</span>
           </label>
@@ -82,7 +80,6 @@ function Register(props) {
               required
               onChange={handleChange}
               value={email  || ""}
-              pattern={EMAIL_PATTERN}
             />
             <span className="form__error">{errors.email || "" }</span>
           </label>
@@ -94,7 +91,7 @@ function Register(props) {
               className="form__input"
               name="password"
               id="password"
-              minLength={2}
+              minLength={6}
               maxLength={30}
               required
               onChange={handleChange}

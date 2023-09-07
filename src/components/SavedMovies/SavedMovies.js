@@ -7,7 +7,12 @@ function SavedMovies(props) {
   return (
     <main>
       <section className="saved-movies">
-        <SearchForm></SearchForm>
+        <SearchForm
+        onClick = {props.onClick}
+        handleValue={props.handleValue}
+        isChecked={props.isChecked}
+        onChange={props.onChange}
+        ></SearchForm>
         <MoviesCardList
           films={props.films}
           isLoading ={ props.isLoading}

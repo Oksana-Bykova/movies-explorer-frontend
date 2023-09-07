@@ -6,29 +6,13 @@ import { useFormWithValidation } from "../../utils/Validation";
 import "../Form/Form.css";
 
 function Login(props) {
-  //const [email, setEmail] = React.useState("");
-  //const [password, setPassword] = React.useState("");
 
-  //function handleEmail(evt) {
- //   setEmail(evt.target.value);
-//  }
-
- // function handlePassword(evt) {
- //   setPassword(evt.target.value);
- // }
-
- const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+ const { values, handleChange, errors, isValid } = useFormWithValidation();
 
  const { email, password } = values;
 
   function handleSubmit(evt) {
     evt.preventDefault();
-  //  const arr = {
-   //   email: email,
-   //   password: password,
-  //  };
-   // props.onRegister(arr);
-
    props.onRegister (email, password);
   }
 
@@ -67,7 +51,7 @@ function Login(props) {
               className="form__input"
               name="password"
               id="password"
-              minLength={2}
+              minLength={6}
               maxLength={30}
               required
               onChange={handleChange}
