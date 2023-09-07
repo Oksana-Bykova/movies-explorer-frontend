@@ -3,13 +3,6 @@ class Api {
     this.baseUrl = baseUrl;
   }
 
- // _checkResponse(res) {
- //   if (res.ok) {
- //     return res.json();
- //   }
- //   return Promise.reject(`Ошибка: ${res.status}`);
- // }
-
    _checkResponse(res) {
     if (res.ok) {
      return res.json();
@@ -45,12 +38,9 @@ class Api {
         duration: data.duration,
         year: data.year,
         description: data.description,
-        //image: data.image.url,
         image: `https://api.nomoreparties.co/${data.image.url}`,
         trailerLink: data.trailerLink,
-        //thumbnail: data.image.formats.thumbnail.url,
         thumbnail: `https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`,
-        //owner: data.owner,
         movieId: data.id,
       }),
     }).then((res) => this._checkResponse(res));
@@ -80,16 +70,6 @@ class Api {
     }).then((res) => this._checkResponse(res));
   }
 
- // changeLikeCardStatus(id, isLiked) {
- //   return fetch(`${this.baseUrl}/cards/${id}/likes`, {
- //     method: `${isLiked ? `PUT` : `DELETE`}`,
- //     headers: {
- //       "Content-Type": "application/json",
- //       authorization: `Bearer ${localStorage.getItem("jwt")}`,
- //     },
- //   }).then((res) => this._checkResponse(res));
- // }
-
   deleteCard(id) {
     return fetch(`${this.baseUrl}/movies/${id}`, {
       method: "DELETE",
@@ -105,7 +85,7 @@ class Api {
 
 //***********************************************************************создаем экземпляр класса Api
 const api = new Api({
-  // baseUrl: "api.oksana.bikova.movies.nomoredomains.xyz",
-  baseUrl: "http://localhost:3000",
+   baseUrl: "api.oksana.bikova.movies.nomoredomains.xyz",
+ // baseUrl: "http://localhost:3000",
 });
 export { api };
