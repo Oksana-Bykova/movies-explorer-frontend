@@ -1,5 +1,4 @@
 import React from "react";
-//import { Form } from "../Form/Form";
 import "./Register.css";
 import {useFormWithValidation} from "../../utils/Validation";
 import { Link } from "react-router-dom";
@@ -7,9 +6,6 @@ import logo from "../../images/logo.svg";
 import "../Form/Form.css";
 
 function Register(props) {
-  //const [email, setEmail] = React.useState("");
-  //const [password, setPassword] = React.useState("");
-  //const [name, setName] = React.useState("");
 
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
   
@@ -19,26 +15,8 @@ function Register(props) {
     props.cleanErr();
   },[]);  
 
- // function handleEmail(evt) {
- //   setEmail(evt.target.value);
-// }
-
- // function handlePassword(evt) {
- //   setPassword(evt.target.value);
- // }
-
- // function handleName(evt) {
- //   setName(evt.target.value);
- // }
-
   function handleSubmit(evt) {
     evt.preventDefault();
-  //  const arr = {
-  //    email: email,
-   //   password: password,
-  //    name: name,
-   // };
-   // props.onRegister(email, password, name);
    props.onRegister (email, password, name)
   }
 
