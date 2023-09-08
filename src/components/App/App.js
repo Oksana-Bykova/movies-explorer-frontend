@@ -262,6 +262,10 @@ function App() {
 
   //функция поиска по сохраненым фильмам - сабмит формы
   function handleSubmitSearchSavedMovies() {
+
+    if (querySavedFilms.string === "") {
+      return;
+    }
     const filtredMovies = FiltredMovies(savedFilms, querySavedFilms);
 
     if (filtredMovies < 1) {
