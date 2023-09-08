@@ -171,9 +171,7 @@ function App() {
         }
       })
       .catch((err) => {
-        if (err.includes("401")) {
-          setErr("Неверный логин или пароль");
-        }
+        setErr(err);
       });
   }
 
@@ -353,7 +351,13 @@ function App() {
                 />
                 <Route
                   path="/signin"
-                  element={<Login onRegister={handleSubmitLogin} err={err} />}
+                  element={
+                    <Login
+                      onRegister={handleSubmitLogin}
+                      err={err}
+                      cleanErr={cleanErr}
+                    />
+                  }
                 />
                 <Route path="*" element={<NotFound />} />
                 <Route

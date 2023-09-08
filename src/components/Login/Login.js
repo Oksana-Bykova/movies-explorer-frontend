@@ -7,6 +7,11 @@ import "../Form/Form.css";
 
 function Login(props) {
 
+  React.useEffect(() => {
+    props.cleanErr();
+  }, []);
+
+
  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
  const { email, password } = values;
