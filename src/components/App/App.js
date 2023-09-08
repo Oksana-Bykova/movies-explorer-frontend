@@ -66,6 +66,7 @@ function App() {
     isChecked: false,
   });
 
+
   React.useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getProfileInformation(), api.getInitialFilms()])
@@ -223,19 +224,32 @@ function App() {
     }
     setIsLoadind(true);
 
+    const localStorageAllFilms = JSON.parse(
+      localStorage.getItem("allFilmsBeatfilm")
+    );
+
+    if (localStorageAllFilms) {
+      
+      const filtredMovies = FiltredMovies(localStorageAllFilms, query);
+
+      if (filtredMovies < 1) {
+        setSearchText({ text: "Ничего не найдено" });
+      }
+      setIsLoadind(false);
+      setFilms(filtredMovies);
+      localStorage.setItem("searchString", query.string);
+      localStorage.setItem("isChecked", query.isChecked);
+      localStorage.setItem("movieFromRequest", JSON.stringify(filtredMovies));
+      
+      return
+    } 
+
     moviesApi
       .getMovies()
       .then((data) => {
-        const filtredMovies = FiltredMovies(data, query);
 
-        if (filtredMovies < 1) {
-          setSearchText({ text: "Ничего не найдено" });
-        }
-
-        setFilms(filtredMovies);
-        localStorage.setItem("searchString", query.string);
-        localStorage.setItem("isChecked", query.isChecked);
-        localStorage.setItem("movieFromRequest", JSON.stringify(filtredMovies));
+        localStorage.setItem("allFilmsBeatfilm", JSON.stringify(data));
+        handleSubmitSearchMovies();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -303,9 +317,10 @@ function App() {
 
   //функция удаления фильма из сохраненных фильмов на роуте /saved-movies
   function handleDeleteFilm(movie) {
+    console.log(movie);
     api.deleteCard(movie._id).then((data) => {
       console.log("удалено");
-      console.log(data);
+      
       const newCards = savedFilms.filter((c) => c._id !== movie._id);
       setSavedFilms(newCards);
     });
