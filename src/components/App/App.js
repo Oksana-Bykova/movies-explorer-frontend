@@ -66,6 +66,9 @@ function App() {
     isChecked: false,
   });
 
+  // стейт для хранения результатов поиска на saved-movies
+  const [renderFilms, setRenderFilms] = React.useState([]);
+
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -73,6 +76,7 @@ function App() {
         .then((data) => {
           setCurrentUser(data[0]);
           setSavedFilms(data[1]);
+          setRenderFilms(data[1]);
         })
         .catch((err) => {
          console.log(err);
@@ -301,7 +305,7 @@ function App() {
       setSearchText({ text: "Ничего не найдено" });
     }
 
-    setSavedFilms(filtredMovies);
+    setRenderFilms(filtredMovies);
   }
 
   // функция записывает состояние чекбокса на странице сохраненных фильмов в стейт
@@ -326,17 +330,18 @@ function App() {
     console.log(movie);
     api.addFilm(movie).then((data) => {
       setSavedFilms([...savedFilms, data]);
+      setRenderFilms([...savedFilms, data]);
       console.log(savedFilms);
     });
   }
 
   //функция удаления фильма из сохраненных фильмов на роуте /saved-movies
   function handleDeleteFilm(movie) {
-    console.log(movie);
     api.deleteCard(movie._id).then((data) => {
       console.log("удалено");
       
       const newCards = savedFilms.filter((c) => c._id !== movie._id);
+      setRenderFilms(newCards);
       setSavedFilms(newCards);
     });
   }
@@ -406,8 +411,8 @@ function App() {
                   element={
                     <ProtectedRouteElement
                       element={SavedMovies}
-                      //loggedIn={loggedIn}
-                      films={savedFilms}
+                      //films={savedFilms}
+                      films={renderFilms}
                       isLoading={isLoading}
                       ClickButtonDelete={handleDeleteFilm}
                       savedFilms={savedFilms}
