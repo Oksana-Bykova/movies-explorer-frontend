@@ -8,12 +8,21 @@ import {
   checkingPatternEmail,
   checkingPatternName,
 } from "../../utils/CheckingPattern";
+import { useNavigate } from "react-router-dom";
 
 function Register(props) {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
 
   const { name, email, password } = values;
+
+  //если пользователь залогинен - он не должен попасть на страницу авторизации и регистрации
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (!props.loggedIn) {
+      navigate("/");
+    }
+  }, [props.loggedIn]);
 
   React.useEffect(() => {
     props.cleanErr();
