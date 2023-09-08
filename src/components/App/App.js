@@ -74,7 +74,11 @@ function App() {
           setCurrentUser(data[0]);
           setSavedFilms(data[1]);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+         console.log(err);
+         setMessagePopup(err);
+         handleOpenPopup();
+        });
     }
   }, [loggedIn]);
 
@@ -133,7 +137,11 @@ function App() {
         .then((data) => {
           handleloggedIn(data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setMessagePopup(err);
+          handleOpenPopup();
+        });
     }
   }
 
@@ -214,7 +222,11 @@ function App() {
         handleOpenPopup();
       })
 
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setMessagePopup(err);
+        handleOpenPopup();
+      });
   }
   // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //получение  фильмов по ключевым словам
@@ -251,7 +263,10 @@ function App() {
         localStorage.setItem("allFilmsBeatfilm", JSON.stringify(data));
         handleSubmitSearchMovies();
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {console.log(err);
+        setMessagePopup(err);
+        handleOpenPopup();
+      })
       .finally(() => {
         setIsLoadind(false);
       });
