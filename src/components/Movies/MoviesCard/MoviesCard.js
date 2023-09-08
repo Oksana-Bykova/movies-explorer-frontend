@@ -19,7 +19,7 @@ function handleDuration(time) {
 
 }
 
-//console.log(props.isSaved);
+console.log(props.isSaved);
 
   function ClickButtonSaved() {
     props.ClickButtonSavedFilms(props.card);

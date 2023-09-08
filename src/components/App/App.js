@@ -337,6 +337,7 @@ function App() {
 
   //функция удаления фильма из сохраненных фильмов на роуте /saved-movies
   function handleDeleteFilm(movie) {
+    console.log(movie);
     api.deleteCard(movie._id).then((data) => {
       console.log("удалено");
       

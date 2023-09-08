@@ -1,6 +1,5 @@
 import React from "react";
 import { MoviesCard } from "../MoviesCard/MoviesCard";
-//import { Cards }  from "../../../utils/constants";
 import "./MoviesCardList.css";
 import { useLocation } from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
@@ -12,8 +11,17 @@ function MoviesCardList(props) {
   const { countMovies, addMoreMovies } = useCountMovies();
 
   function isSaved (movie) {
-    return props.savedFilms.some((f) => f.movieId === movie.id);
-  }
+    
+    return props.savedFilms.some((item) => {
+      if (item.movieId === movie.id) {
+        movie._id = item._id;
+        return true;
+      } else {
+        return false;
+      }
+    });
+    }
+  
 
   return (
     <section className="movies-card-list">
