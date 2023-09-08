@@ -199,6 +199,12 @@ function App() {
   //обработка формы редактирования профиля
   function handleUpdateUser(data) {
     console.log(data);
+    console.log(currentUser);
+    if (currentUser.name === data.name && currentUser.email === data.email) {
+      setMessagePopup("Нельзя исправить данные на уже существующие");
+    handleOpenPopup();
+    return;
+    };
     api
       .editProfile(data)
       .then((data) => {
