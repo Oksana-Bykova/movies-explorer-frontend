@@ -3,15 +3,15 @@ import { MoviesCard } from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
 import { useLocation } from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
-import { useCountMovies } from "../../../utils/useСountMovies.js";
+import { useCountMovies, useWidth } from "../../../utils/СountMovies.js";
 
 function MoviesCardList(props) {
   let { pathname } = useLocation();
 
-  const { countMovies, addMoreMovies } = useCountMovies();
+  const width = useWidth();
+  const { countMovies, addMoreMovies } = useCountMovies(width);
 
-  function isSaved (movie) {
-    
+  function isSaved(movie) {
     return props.savedFilms.some((item) => {
       if (item.movieId === movie.id) {
         movie._id = item._id;
@@ -20,14 +20,13 @@ function MoviesCardList(props) {
         return false;
       }
     });
-    }
-  
+  }
 
   return (
     <section className="movies-card-list">
       {props.isLoading ? (
         <Preloader />
-      ) :  props.films.length === 0 ? (
+      ) : props.films.length === 0 ? (
         <h3 className="movies-card-list__error">{props.text} </h3>
       ) : (
         <>
@@ -44,9 +43,8 @@ function MoviesCardList(props) {
                 card={item}
                 button="Сохранить"
                 ClickButtonSavedFilms={props.ClickButtonSavedFilms}
-                ClickButtonDelete = {props.ClickButtonDelete}
-                isSaved = {isSaved(item)}
-                
+                ClickButtonDelete={props.ClickButtonDelete}
+                isSaved={isSaved(item)}
               />
             ))}
           </ul>
