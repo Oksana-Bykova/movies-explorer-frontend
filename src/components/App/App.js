@@ -69,6 +69,8 @@ function App() {
   // стейт для хранения результатов поиска на saved-movies
   const [renderFilms, setRenderFilms] = React.useState([]);
 
+//стейт хранит true или false в зависимости от того , был ли хоть раз выполнен поиск по странице сохраненных фильмов
+const [firstSearch, setFirstSearch] =  React.useState(false);
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -119,6 +121,11 @@ function App() {
       setFilms(localStorageArray);
     }
   }, []);
+
+ // React.useEffect(() => {
+  //  console.log("работает сброс");
+ //   setRenderFilms(savedFilms);
+//  }, [firstSearch]);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //функция открытия попапа
@@ -300,11 +307,12 @@ function App() {
    // }
     const filtredMovies = FiltredMovies(savedFilms, querySavedFilms);
 
-    if (filtredMovies < 1) {
+    if (filtredMovies.length < 1) {
       setSearchText({ text: "Ничего не найдено" });
     }
 
     setRenderFilms(filtredMovies);
+    setFirstSearch(true);
   }
 
   // функция записывает состояние чекбокса на странице сохраненных фильмов в стейт
@@ -421,6 +429,7 @@ function App() {
                       handleValue={handleValueSavedFilms}
                       isChecked={querySavedFilms.isChecked}
                       onChange={isValidCheckboxSavedFilms}
+                      firstSearch= {firstSearch}
                     />
                   }
                 />
