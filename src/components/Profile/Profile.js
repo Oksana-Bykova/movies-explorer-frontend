@@ -4,18 +4,12 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { useFormWithValidation } from "../../utils/Validation";
+import {
+  checkingPatternEmail,
+  checkingPatternName,
+} from "../../utils/CheckingPattern";
 
 function Profile(props) {
-  //const [name, setName] = React.useState("");
-  // const [email, setEmail] = React.useState("");
-
-  //function handleName(evt) {
-  //  setName(evt.target.value);
-  //}
-
-  // function handleEmail(evt) {
-  //   setEmail(evt.target.value);
-  // }
 
   const { values, handleChange, errors, isValid, resetForm, setValues } =
     useFormWithValidation();
@@ -61,7 +55,7 @@ function Profile(props) {
                 onChange={handleChange}
               />
             </div>
-            <span className="profile__span">{errors.name || ""}</span>
+            <span className="profile__span">{errors.name || checkingPatternName(name).message}</span>
             <div className="profile__form-container">
               <label className="profile__label">Email</label>
               <input
@@ -76,14 +70,18 @@ function Profile(props) {
                 onChange={handleChange}
               />
             </div>
-            <span className="profile__span">{errors.email || ""}</span>
+            <span className="profile__span">{errors.email || checkingPatternEmail(email).message}</span>
 
             <button
               type="submit"
               className={
-                !isValid ? "profile__button-disabled" : "profile__button"
+                !isValid ||
+                checkingPatternEmail(email).invalid ||
+                checkingPatternName(name).invalid? "profile__button-disabled" : "profile__button"
               }
-              disabled={!isValid}
+              disabled={!isValid ||
+                checkingPatternEmail(email).invalid ||
+                checkingPatternName(name).invalid}
               onClick={handleUpdateUser}
             >
               Редактировать

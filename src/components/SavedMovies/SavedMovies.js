@@ -19,7 +19,7 @@ function SavedMovies(props) {
           isLoading ={ props.isLoading}
           ClickButtonDelete= {props.ClickButtonDelete}
           savedFilms = {props.savedFilms}
-          firstSearch ={props.firstSearch}
+          text={props.text}
         ></MoviesCardList>
       </section>
     </main>

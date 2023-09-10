@@ -5,6 +5,9 @@ import logo from "../../images/logo.svg";
 import { useFormWithValidation } from "../../utils/Validation";
 import "../Form/Form.css";
 import { useNavigate } from "react-router-dom";
+import {
+  checkingPatternEmail,
+} from "../../utils/CheckingPattern";
 
 function Login(props) {
   //если пользователь залогинен - он не должен попасть на страницу авторизации и регистрации
@@ -51,7 +54,7 @@ function Login(props) {
                 onChange={handleChange}
                 value={email || ""}
               />
-              <span className="form__error">{errors.email || ""}</span>
+              <span className="form__error">{errors.email || checkingPatternEmail(email).message}</span>
             </label>
 
             <label className="form__label" htmlFor="password">
@@ -71,11 +74,17 @@ function Login(props) {
             </label>
             <p className="form__span-error-submit">{props.err}</p>
             <button
-              type="submit"
+               type="submit"
               className={
-                !isValid ? "form__button-disabled" : "form__button-login"
+                !isValid ||
+                checkingPatternEmail(email).invalid 
+                  ? "form__button-disabled"
+                  : "form__button-login"
               }
-              disabled={!isValid}
+              disabled={
+                !isValid ||
+                checkingPatternEmail(email).invalid
+              }
             >
               Войти
             </button>

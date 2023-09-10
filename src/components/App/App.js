@@ -69,8 +69,7 @@ function App() {
   // стейт для хранения результатов поиска на saved-movies
   const [renderFilms, setRenderFilms] = React.useState([]);
 
-//стейт хранит true или false в зависимости от того , был ли хоть раз выполнен поиск по странице сохраненных фильмов
-const [firstSearch, setFirstSearch] =  React.useState(false);
+  const isSavedMoviesPage = pathname === "/saved-movies";
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -81,9 +80,9 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
           setRenderFilms(data[1]);
         })
         .catch((err) => {
-         console.log(err);
-         setMessagePopup(err);
-         handleOpenPopup();
+          console.log(err);
+          setMessagePopup(err);
+          handleOpenPopup();
         });
     }
   }, [loggedIn]);
@@ -122,10 +121,16 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
     }
   }, []);
 
- // React.useEffect(() => {
-  //  console.log("работает сброс");
- //   setRenderFilms(savedFilms);
-//  }, [firstSearch]);
+  React.useEffect(() => {
+    console.log( querySavedFilms);
+    setQuerySavedFilms({
+      string: "",
+      isChecked: false,
+    });
+    if (isSavedMoviesPage) {
+      handleSubmitSearchSavedMovies();
+    }
+  }, [savedFilms, isSavedMoviesPage]);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //функция открытия попапа
@@ -222,9 +227,9 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
     console.log(currentUser);
     if (currentUser.name === data.name && currentUser.email === data.email) {
       setMessagePopup("Нельзя исправить данные на уже существующие");
-    handleOpenPopup();
-    return;
-    };
+      handleOpenPopup();
+      return;
+    }
     api
       .editProfile(data)
       .then((data) => {
@@ -252,7 +257,6 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
     );
 
     if (localStorageAllFilms) {
-      
       const filtredMovies = FiltredMovies(localStorageAllFilms, query);
 
       if (filtredMovies < 1) {
@@ -263,18 +267,18 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
       localStorage.setItem("searchString", query.string);
       localStorage.setItem("isChecked", query.isChecked);
       localStorage.setItem("movieFromRequest", JSON.stringify(filtredMovies));
-      
-      return
-    } 
+
+      return;
+    }
 
     moviesApi
       .getMovies()
       .then((data) => {
-
         localStorage.setItem("allFilmsBeatfilm", JSON.stringify(data));
         handleSubmitSearchMovies();
       })
-      .catch((err) => {console.log(err);
+      .catch((err) => {
+        console.log(err);
         setMessagePopup(err);
         handleOpenPopup();
       })
@@ -301,10 +305,6 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
   // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //функция поиска по сохраненым фильмам - сабмит формы
   function handleSubmitSearchSavedMovies() {
-
-  //  if (querySavedFilms.string === "") {
-  //    return;
-   // }
     const filtredMovies = FiltredMovies(savedFilms, querySavedFilms);
 
     if (filtredMovies.length < 1) {
@@ -312,15 +312,10 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
     }
 
     setRenderFilms(filtredMovies);
-    setFirstSearch(true);
   }
 
   // функция записывает состояние чекбокса на странице сохраненных фильмов в стейт
   function isValidCheckboxSavedFilms(evt) {
-    console.log("происходит")
-   // if (querySavedFilms.string === "") {
-   //   return;
-   // }
     const isChecked = evt.target.checked;
     setQuerySavedFilms((q) => ({ ...q, isChecked: isChecked }));
   }
@@ -348,7 +343,7 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
     console.log(movie);
     api.deleteCard(movie._id).then((data) => {
       console.log("удалено");
-      
+
       const newCards = savedFilms.filter((c) => c._id !== movie._id);
       setRenderFilms(newCards);
       setSavedFilms(newCards);
@@ -378,7 +373,6 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
                   element={
                     <ProtectedRouteElement
                       element={Movies}
-                      //loggedIn={loggedIn}
                       onClick={handleSubmitSearchMovies}
                       films={films}
                       handleValue={handleValue}
@@ -407,7 +401,7 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
                   path="/signin"
                   element={
                     <Login
-                    loggedIn = {loggedIn}
+                      loggedIn={loggedIn}
                       onRegister={handleSubmitLogin}
                       err={err}
                       cleanErr={cleanErr}
@@ -420,7 +414,6 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
                   element={
                     <ProtectedRouteElement
                       element={SavedMovies}
-                      //films={savedFilms}
                       films={renderFilms}
                       isLoading={isLoading}
                       ClickButtonDelete={handleDeleteFilm}
@@ -429,7 +422,7 @@ const [firstSearch, setFirstSearch] =  React.useState(false);
                       handleValue={handleValueSavedFilms}
                       isChecked={querySavedFilms.isChecked}
                       onChange={isValidCheckboxSavedFilms}
-                      firstSearch= {firstSearch}
+                      text={searchText.text}
                     />
                   }
                 />

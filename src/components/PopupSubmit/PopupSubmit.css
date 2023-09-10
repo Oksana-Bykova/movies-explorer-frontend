@@ -1,7 +1,7 @@
 .popup__container {
     position: relative;
     width: 400px;
-    height: 100px;
+    height: 130px;
     background: #202020;
     font-family: Inter;
     color: white;
@@ -28,6 +28,7 @@ background: #EE3465;
 .popup__text {
     margin-top: 20px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .popup {
