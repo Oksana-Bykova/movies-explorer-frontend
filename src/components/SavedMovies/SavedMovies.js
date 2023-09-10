@@ -4,6 +4,7 @@ import { MoviesCardList } from "../Movies/MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
 function SavedMovies(props) {
+
   return (
     <main>
       <section className="saved-movies">

@@ -19,7 +19,7 @@ function Register(props) {
   //если пользователь залогинен - он не должен попасть на страницу авторизации и регистрации
   const navigate = useNavigate();
   React.useEffect(() => {
-    if (!props.loggedIn) {
+    if (props.loggedIn) {
       navigate("/");
     }
   }, [props.loggedIn]);
