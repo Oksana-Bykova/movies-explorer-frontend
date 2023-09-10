@@ -292,13 +292,12 @@ function App() {
   }
 
   // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   //функция поиска по сохраненым фильмам - сабмит формы
   function handleSubmitSearchSavedMovies() {
 
-    if (querySavedFilms.string === "") {
-      return;
-    }
+  //  if (querySavedFilms.string === "") {
+  //    return;
+   // }
     const filtredMovies = FiltredMovies(savedFilms, querySavedFilms);
 
     if (filtredMovies < 1) {
@@ -310,9 +309,10 @@ function App() {
 
   // функция записывает состояние чекбокса на странице сохраненных фильмов в стейт
   function isValidCheckboxSavedFilms(evt) {
-    if (querySavedFilms.string === "") {
-      return;
-    }
+    console.log("происходит")
+   // if (querySavedFilms.string === "") {
+   //   return;
+   // }
     const isChecked = evt.target.checked;
     setQuerySavedFilms((q) => ({ ...q, isChecked: isChecked }));
   }
